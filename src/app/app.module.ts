@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtService } from './jwt.service';
 import { AuthInterceptor } from './vendor/auth.interceptor';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AuthInterceptor } from './vendor/auth.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    MatSortModule
   ],
   providers: [JwtService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},],

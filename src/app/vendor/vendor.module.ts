@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VendorComponent } from './vendor.component';
 import { VendorLoginComponent } from './vendor-login/vendor-login.component';
 import { VendorSignupComponent } from './vendor-signup/vendor-signup.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule, Routes } from '@angular/router';
@@ -21,7 +19,9 @@ import { AddEventComponent } from './home/add_event/add-event.component';
 import {MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { ImageUploaderComponent } from './home/image-uploader/image-uploader.component'; 
+import { MatIconModule } from '@angular/material/icon';
+import { ImageUploaderComponent } from './home/add_event/image-uploader/image-uploader.component';
+import {MatButtonModule} from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -61,7 +61,9 @@ const routes: Routes = [
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule, 
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [AuthGuard]
 })

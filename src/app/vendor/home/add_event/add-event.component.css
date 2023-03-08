@@ -1,11 +1,18 @@
-mat-card {
+/* mat-card {
     width: 1080px;
-    height: 600px;
+    height: 900px;
     margin-top: 90px;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2);
-    margin-left: 250px;
+    margin-bottom: 20px;
+    
+} */
+
+button {
+    background-color: green;
 }
 
-textarea matInput {
-    width: 1500px;
+#map-mapbox {
+    width: 85%;
+    height: 300px;
+    background-color: red;
 }
