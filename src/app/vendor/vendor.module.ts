@@ -20,8 +20,9 @@ import {MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ImageUploaderComponent } from './home/add_event/image-uploader/image-uploader.component';
 import {MatButtonModule} from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { EventManagementComponent } from './home/event-management/event-management.component';
 
 const routes: Routes = [
   {
@@ -31,10 +32,12 @@ const routes: Routes = [
       { path: '', component: HomeComponent, canActivate:[AuthGuard]},
       { path: 'signup', component: VendorSignupComponent },
       { path: 'login', component: VendorLoginComponent },
-      { path: 'add_event', component: AddEventComponent },
+      { path: 'add_event', component: AddEventComponent,  canActivate:[AuthGuard] },
+      { path: 'event_management', component: EventManagementComponent, canActivate:[AuthGuard] }
     ],
   },
 ];
+
 
 @NgModule({
   declarations: [
@@ -45,8 +48,9 @@ const routes: Routes = [
     SidebarComponent,
     NavbarComponent,
     AddEventComponent,
-    ImageUploaderComponent,
+    EventManagementComponent,
   ],
+  
   imports: [
     CommonModule,
     FormsModule,
@@ -63,7 +67,8 @@ const routes: Routes = [
     MatDatepickerModule, 
     MatNativeDateModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatAutocompleteModule
   ],
   providers: [AuthGuard]
 })

@@ -16,9 +16,10 @@ export class AuthInterceptor implements HttpInterceptor {
   //Avoid any
   constructor(private jwtService: JwtService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.jwtService.getToken()
-    console.log(token);
-    
+    if(request.headers.get('skip')){
+      return next.handle(request)
+    }
+    const token = this.jwtService.getToken();
     const headersConfig = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -26,8 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
     };
     headersConfig.Authorization = `Bearer ${token}`;
     const authReq = request.clone({setHeaders: headersConfig});
-    console.log(authReq);
-    
     return next.handle(authReq);
   }
 }
