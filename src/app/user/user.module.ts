@@ -5,9 +5,11 @@ import { CommonModule } from '@angular/common';
 
 
 import { UserComponent } from './user.component';
-import { UserHomeComponent } from '../user/home/home.component';
-import { SignupComponent } from '../user/signup/signup.component';
-import { LoginComponent } from '../user/login/login.component';
+import { UserHomeComponent } from './pages/home/home.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
+import { NavbarComponent } from './components/header/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const routes: Routes = [
@@ -27,9 +29,11 @@ const routes: Routes = [
     SignupComponent,
     LoginComponent,
     UserHomeComponent,
-    UserComponent
-   
+    UserComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
+
   imports: [
    FormsModule,
    CommonModule,

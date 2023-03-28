@@ -1,0 +1,96 @@
+<body
+    class="antialiased tracking-tight font-base text-gray-500 text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden">
+    <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">
+        <div class="header-wrapper bg-accent text-white">
+            <header id="site-header" class="bg-accent text-white">
+                <div class="container">
+                    <nav class="flex min-h-[64px] items-center justify-between py-1 lg:min-h-[90px] lg:py-4">
+                        <!-- Logo -->
+                        <div
+                            >
+                            <h1 class="text-5xl font-heading">GatherGala</h1>
+                        </div><!-- Logo / End --><!-- Navigation (Desktop) -->
+                        <ul class="hidden gap-x-7 xl:gap-x-10 text-sm font-bold lg:flex">
+                            <li class=""><a
+                                    class="relative inline-flex items-center gap-x-2 leading-10 after:absolute after:bottom-[7px] after:left-0 after:h-[2px] after:bg-white after:transition-transform after:w-full after:origin-right hover:after:origin-left after:scale-x-0 hover:after:scale-x-100"
+                                    href="#">Home</a></li>
+                            <li
+                                class="relative [&>.sub-menu]:hover:visible [&>.sub-menu]:hover:animate-popper-pop-in [&>.sub-menu]:hover:opacity-100">
+                                <a class="relative inline-flex items-center gap-x-2 leading-10 after:absolute after:bottom-[7px] after:left-0 after:h-[2px] after:bg-white after:transition-transform after:w-full after:origin-right hover:after:origin-left after:scale-x-0 hover:after:scale-x-100"
+                                    href="#">Videos <svg role="img" class="h-2 w-2 rotate-90 fill-white">
+                                        <use xlink:href="assets/img/yt1/sprite.svg#arrow-right"></use>
+                                    </svg></a>
+
+                            </li>
+                            <li
+                                class="relative [&>.sub-menu]:hover:visible [&>.sub-menu]:hover:animate-popper-pop-in [&>.sub-menu]:hover:opacity-100">
+                                <a class="relative inline-flex items-center gap-x-2 leading-10 after:absolute after:bottom-[7px] after:left-0 after:h-[2px] after:bg-white after:transition-transform after:w-full after:origin-right hover:after:origin-left after:scale-x-0 hover:after:scale-x-100"
+                                    href="#">Events <svg role="img" class="h-2 w-2 rotate-90 fill-white">
+                                        <use xlink:href="assets/img/yt1/sprite.svg#arrow-right"></use>
+                                    </svg></a>
+
+                            </li>
+
+
+                        </ul><!-- Navigation (Desktop) / End --><!-- Header Controls -->
+
+                    </nav>
+                </div>
+            </header>
+
+        </div><!-- Mobile Menu -->
+
+        <div
+            class="js-mobile-menu p-t-[64px] fixed left-0 top-[64px] z-50 block h-[calc(100dvh-64px)] w-full translate-x-full overflow-auto bg-white dark:bg-gray-800 py-5 text-primary dark:text-white transition-transform duration-300 lg:hidden">
+            <div class="container"><!-- Navigation (Mobile) -->
+                <ul class="text-md flex flex-col font-bold">
+                    <li
+                        class="flex flex-wrap items-center gap-x-4 border-b border-b-gray-200 dark:border-b-gray-200/10">
+                        <a class="flex-grow gap-x-1 py-4 leading-normal transition-colors hover:text-accent"
+                            href="_yt1-index.html">Home</a>
+                    </li>
+                    <li
+                        class="flex flex-wrap items-center gap-x-4 border-b border-b-gray-200 dark:border-b-gray-200/10">
+                        <a class="flex-grow gap-x-1 py-4 leading-normal transition-colors hover:text-accent"
+                            href="_yt1-videos-grid-4.html">Videos </a><button
+                            class="js-mobile-submenu-toggle ml-auto inline-flex h-7 w-7 items-center justify-center transition-transform"><svg
+                                role="img" class="sub-menu-toggle h-2 w-2 rotate-90 fill-primary dark:fill-white">
+                                <use xlink:href="assets/img/yt1/sprite.svg#arrow-right"></use>
+                            </svg></button>
+                        <ul
+                            class="flex max-h-0 w-full flex-col overflow-hidden pl-4 text-sm transition-all duration-300 [&>li:last-child]:pb-4">
+                            <li class="flex flex-wrap items-center gap-x-4"><a
+                                    class="flex-grow gap-x-1 py-2 transition-colors hover:text-accent"
+                                    href="_yt1-videos-grid-3.html">Videos - 3 Cols</a></li>
+                            <li class="flex flex-wrap items-center gap-x-4"><a
+                                    class="flex-grow gap-x-1 py-2 transition-colors hover:text-accent"
+                                    href="_yt1-videos-grid-4.html">Videos - 4 Cols</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li
+                        class="flex flex-wrap items-center gap-x-4 border-b border-b-gray-200 dark:border-b-gray-200/10">
+                        <a class="flex-grow gap-x-1 py-4 leading-normal transition-colors hover:text-accent"
+                            href="_yt1-events.html">Events </a><button
+                            class="js-mobile-submenu-toggle ml-auto inline-flex h-7 w-7 items-center justify-center transition-transform"><svg
+                                role="img" class="sub-menu-toggle h-2 w-2 rotate-90 fill-primary dark:fill-white">
+                                <use xlink:href="assets/img/yt1/sprite.svg#arrow-right"></use>
+                            </svg></button>
+                        <ul
+                            class="flex max-h-0 w-full flex-col overflow-hidden pl-4 text-sm transition-all duration-300 [&>li:last-child]:pb-4">
+                            <li class="flex flex-wrap items-center gap-x-4"><a
+                                    class="flex-grow gap-x-1 py-2 transition-colors hover:text-accent"
+                                    href="_yt1-single-event.html">Single Event</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul><!-- Navigation (Mobile) / End -->
+            </div>
+        </div><!-- Mobile Menu / End -->
+    </div>
+
+</body>
+
+<!-- class="relative inline-flex items-center gap-x-2 leading-10 after:absolute after:bottom-[7px] after:left-0 after:h-[2px] after:bg-white after:transition-transform after:w-full after:origin-left after:scale-x-100" -->
