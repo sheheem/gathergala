@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VendorLoginComponent } from './vendor/vendor-login/vendor-login.component';
-import { VendorSignupComponent } from './vendor/vendor-signup/vendor-signup.component';
-import { VendorComponent } from './vendor/vendor.component';
-import { HomeComponent } from './vendor/home/home.component';
+
 
 const routes: Routes = [
   // { path: '', component: HomeComponent },
@@ -12,6 +9,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./vendor/vendor.module').then((m) => m.VendorModule),
   },
+  {
+    path: ' ',
+    loadChildren: () => 
+      import('./user/user.module').then((m) => m.UserModule)
+  }
 ];
 
 @NgModule({
