@@ -9,10 +9,10 @@ import { AuthInterceptor } from './vendor/auth.interceptor';
 import { CommonModule } from '@angular/common';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-   
     
   ],
   imports: [

@@ -10,6 +10,9 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { EventsComponent } from '../user/pages/events/events.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { EventDetailComponent } from './pages/event-detail/event-detail.component';
 
 
 const routes: Routes = [
@@ -19,7 +22,10 @@ const routes: Routes = [
     children: [
       { path: '', component: UserHomeComponent },
       { path: 'signup', component: SignupComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'events', component: EventsComponent },
+      { path: 'event-detail', component: EventDetailComponent },
+      { path: 'checkout', component: CheckOutComponent }
     ]
   }
 ]
@@ -32,6 +38,9 @@ const routes: Routes = [
     UserComponent,
     NavbarComponent,
     FooterComponent,
+    EventsComponent,
+    CheckOutComponent,
+    EventDetailComponent,
   ],
 
   imports: [
