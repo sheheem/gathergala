@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { UserComponent } from './user.component';
@@ -13,6 +14,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { EventsComponent } from '../user/pages/events/events.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { EventDetailComponent } from './pages/event-detail/event-detail.component';
+import { AuthGuard } from './auth/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 const routes: Routes = [
@@ -48,6 +52,10 @@ const routes: Routes = [
    CommonModule,
    ReactiveFormsModule,
    RouterModule.forChild(routes),
-  ]
+   MatProgressSpinnerModule
+  ],
+  providers: [AuthGuard, {
+    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+  }]
 })
 export class UserModule { }

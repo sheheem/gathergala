@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { JwtService } from 'src/app/jwt.service';
 import Swiper from 'swiper';
 
 @Component({
@@ -8,11 +9,18 @@ import Swiper from 'swiper';
 })
 export class UserHomeComponent implements OnInit, AfterViewInit {
   swiperProducts: Swiper;
+  isAuth: boolean = false;
+  
+  constructor(private _jwtService: JwtService) {}
 
   ngOnInit() {
-    
+    const token = this._jwtService.getUserToken();
+    if(token) {
+      this.isAuth = true
+    }
   }
 
+  
 ngAfterViewInit(): void {
   this.swiperProducts = new Swiper('.js-vv-product-swiper', {
     direction: 'horizontal',

@@ -15,7 +15,7 @@ import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
 import { NavbarComponent } from './home/navbar/navbar.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../vendor/auth.guard';
 import { AddEventComponent } from './home/add_event/add-event.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -24,6 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EventManagementComponent } from './home/event-management/event-management.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 const routes: Routes = [
   {
@@ -71,6 +73,8 @@ const routes: Routes = [
     MatButtonModule,
     MatAutocompleteModule
   ],
-  providers: [AuthGuard]
+  providers: [AuthGuard, 
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+  ]
 })
 export class VendorModule { }

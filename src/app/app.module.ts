@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 
   ],
   providers: [JwtService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},],
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
