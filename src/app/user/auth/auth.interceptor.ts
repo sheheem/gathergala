@@ -19,6 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
     const token = this._jwtService.getUserToken();
+    alert('ikjhnjkhnikljhn')
+    console.log(token);
+    
     const headersConfig = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -26,6 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
     };
     headersConfig.Authorization = `Bearer ${token}`;
     const authReq = request.clone({setHeaders: headersConfig});
+    console.log(authReq);
+    
     return next.handle(authReq);
   }
 }

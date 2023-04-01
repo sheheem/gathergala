@@ -43,10 +43,12 @@ export class LoginComponent {
     ).subscribe({
       next: (response) => {
         this.isLoading = false
+        this.shoot()
         this._jwtService.setUserToken(response.accessToken)
         this._router.navigate(['/'])
       },
       error: (err) => {
+        this.isLoading = false
         this.isError = true;
         this.errorMessage = err.error.message;
       }
@@ -54,4 +56,29 @@ export class LoginComponent {
     console.log(this.loginForm);
     this.loginForm?.reset();
   }
+
+  shoot() {
+    try {
+      this.confetti({
+        angle: this.random(50, 120),
+        spread: this.random(100, 150),
+        particleCount: this.random(40, 50),
+        origin: {
+          y: 0.6
+        }
+      })
+    } catch (err) {
+      console.log(err);
+      
+    }
+  }
+
+  random(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+  }
+
+  confetti(args: any) {
+    return window['confetti'].apply(this, arguments);
+  }
+
 }

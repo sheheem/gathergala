@@ -27,6 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
     };
     headersConfig.Authorization = `Bearer ${token}`;
     const authReq = request.clone({setHeaders: headersConfig});
+    console.log(authReq);
     return next.handle(authReq);
   }
 }

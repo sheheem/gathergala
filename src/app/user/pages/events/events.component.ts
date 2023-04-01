@@ -1,10 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { iEvent } from 'src/app/model/event.interface';
+import { UserService } from '../../services/user.service';
+import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent {
+export class EventsComponent implements OnInit {
+
+  events: iEvent[]= []
+
+  getCurrentDate(): Date {
+    const currentDate = new Date()
+    currentDate.toLocaleDateString
+    console.log(currentDate);
+    
+    return currentDate;
+  }
+
+  constructor(private _userService: UserService, private _route: Router) {}
+
+  ngOnInit(): void {
+   this._userService.findAllEvents().subscribe({
+        next: (response) => {
+          console.log(response);
+          
+          this.events = response.event
+          
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+      this.getCurrentDate()
+  }
+
+  viewDetail(eventId) {
+    this._route.navigate(['/event-detail', eventId])
+  }
+
 
 }

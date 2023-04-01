@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'signup', component: SignupComponent },
       { path: 'login', component: LoginComponent },
       { path: 'events', component: EventsComponent },
-      { path: 'event-detail', component: EventDetailComponent },
+      { path: 'event-detail/:id', component: EventDetailComponent },
       { path: 'checkout', component: CheckOutComponent }
     ]
   }

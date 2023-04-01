@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
       console.log(response);
       
     }, error:(err)=>{
+      console.log('hihihihihihi--------------------------------');
+      
       console.log(err);
       
     }})

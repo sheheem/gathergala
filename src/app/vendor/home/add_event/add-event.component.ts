@@ -66,6 +66,8 @@ export class AddEventComponent implements OnInit {
     });
   }
 
+  addEvent() {}
+
   onFileSelect(event: Event) {
     this.selectedFile = (event.target as HTMLInputElement).files[0];
     this.addEventForm.get('image').updateValueAndValidity();

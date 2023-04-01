@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtService } from './jwt.service';
 import { AuthInterceptor } from './vendor/auth.interceptor';
 import { CommonModule } from '@angular/common';
+import { AuthGuard } from './vendor/auth.guard';
 
 
 
@@ -23,7 +24,9 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
 
   ],
-  providers: [JwtService,
+  
+    providers: [JwtService, AuthGuard, 
+      {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     ],
   bootstrap: [AppComponent]
 })
