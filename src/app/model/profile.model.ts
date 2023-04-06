@@ -1,4 +1,4 @@
-export interface iProfile {
+export interface iVendorProfile {
     _id: string,
     name: string,
     email: string,

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, skip } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { iProfile } from '../model/profile.model';
+import { iVendorProfile } from '../model/profile.model';
 import { VendorLogin } from '../model/vendor-login.interface';
 import { VendorSignUp } from '../model/vendor-signup.interface';
 
@@ -47,7 +47,7 @@ export class VendorService {
   }
 
   profile() {
-    return this.http.get<{profile: iProfile}>(`${environment.api}/vendor/profile`);
+    return this.http.get<{profile: iVendorProfile}>(`${environment.api}/vendor/profile`);
   }
 
   search_word(query: string) {

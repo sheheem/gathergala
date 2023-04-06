@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { iEvent } from 'src/app/model/event.interface';
 import { UserService } from '../../services/user.service';
 import * as mapboxgl from 'mapbox-gl';
@@ -8,52 +8,55 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
-  styleUrls: ['./event-detail.component.css']
+  styleUrls: ['./event-detail.component.css'],
 })
 export class EventDetailComponent implements OnInit, AfterViewInit {
-
   eventId: string;
   map: mapboxgl.Map;
 
-  constructor(private _route: ActivatedRoute, private _userService: UserService) {}
+  constructor(
+    private _route: ActivatedRoute,
+    private _userService: UserService,
+    private _router: Router
+  ) {}
 
   event: iEvent;
 
   ngOnInit(): void {
-      this.eventId = this._route.snapshot.paramMap.get('id')
-      console.log(this.eventId);
-      this._userService.findEventById(this.eventId).subscribe({
-        next: (response) => {
-              this.event = response.eventDetail
-        },
-        error: (err) => {
-          console.log(err);
-          
-        }
-      })
-      
+    this.eventId = this._route.snapshot.paramMap.get('id');
+    this._userService.findEventById(this.eventId).subscribe({
+      next: (response) => {
+        this.event = response.eventDetail;        
+        console.log(this.event.tickets[0].ticketPrice);
+        
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   createdMarker(lat: number, lng: number) {
     const marker = new mapboxgl.Marker({
-      draggable: false
+      draggable: false,
     })
-    .setLngLat([lat, lng])
-    .addTo(this.map)
+      .setLngLat([lat, lng])
+      .addTo(this.map);
   }
 
   ngAfterViewInit(): void {
-    (mapboxgl as any).accessToken = environment.mapbox.accessToken
+    (mapboxgl as any).accessToken = environment.mapbox.accessToken;
     this.map = new mapboxgl.Map({
       container: 'vv-venue-map',
       style: 'mapbox://styles/mapbox/streets-v12',
-      center:[this.event.latitude, this.event.longitude ],
-      zoom: 16
-    })
+      center: [this.event.latitude, this.event.longitude],
+      zoom: 16,
+    });
 
-    this.createdMarker(this.event.latitude, this.event.longitude )
-
-
+    this.createdMarker(this.event.latitude, this.event.longitude);
   }
 
+  buyTicket(eventId) {
+    this._router.navigate(['/tickets', eventId])
+  }
 }

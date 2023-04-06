@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <app-navbar></app-navbar>
 <div class="header-wrapper bg-accent text-white">
   <div class="page-heading pt-8 pb-12 text-center md:pt-16 md:pb-28">
@@ -126,11 +127,29 @@
                   <h5
                     class="font-bold tracking-tight text-primary dark:text-white md:text-lg md:leading-tight lg:pb-[2px]"
                   >
-                    {{event.ticketPrice | currency:'INR'}}
+                    {{event.tickets[0].ticketPrice | currency:'INR'}}
                   </h5>
-                  <span class="text-xs lg:text-sm">Price</span>
+                  <span class="text-xs lg:text-sm">Onwards</span>
                 </div>
               </li>
+              <li
+                    class="flex basis-full gap-x-4 leading-tight sm:basis-1/2 xl:basis-auto"
+                  >
+                    <div class="lg:pt-1">
+                      <img
+                        width="35px"
+                        src="../../../../assets/account-svgrepo-com.svg"
+                      />
+                    </div>
+                    <div>
+                      <h5
+                        class="font-bold tracking-tight text-primary dark:text-white md:text-lg md:leading-tight lg:pb-[2px]"
+                      >
+                        {{event.organizerId.name}}
+                      </h5>
+                      <span class="text-xs lg:text-sm">Organizer</span>
+                    </div>
+                  </li>
             </ul>
           </div>
         </div>
@@ -147,25 +166,12 @@
               class="prose max-w-none prose-p:text-gray-500 prose-p:tracking-tighter prose-p:lg:mb-8 prose-p:lg:text-lg prose-p:lg:leading-8"
             >
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-              </p>
-              <p>
-                Ut enim ad minima veniam, quis nostrum exercitationem ullam
-                corporis laboriosam, nisi ut aliquid ex ea commodi consequatur?
-                Quis autem vel eum iure reprehenderit esse quam nihil molestiae
-                consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-                pariatur?
+                {{event.eventDescription}}
               </p>
             </div>
             <div class="pt-8 lg:pt-14 flex flex-wrap gap-4 lg:gap-8">
               <a
-                href="_yt1-single-event.html"
+                (click)="buyTicket(event._id)"
                 class="inline-flex text-center text-sm font-bold leading-none text-white transition-colors lg:text-base lg:text-white py-4 px-5 lg:py-5 lg:px-10 bg-accent hover:bg-accent/90"
                 >Buy Tickets </a
               >
@@ -189,6 +195,7 @@
                 <div class="text-primary dark:text-white">
                   <p>{{event.location.split(',')[0].trim()}} </p>
                   <p *ngIf="event.location.split(',')[2].trim()">{{event.location.split(',')[1].trim()}}, {{event.location.split(',')[2].trim()}} </p>
+                  <p *ngIf="event.location.split(',')[4].trim()">{{event.location.split(',')[3].trim()}}, {{event.location.split(',')[4].trim()}} </p>
                 </div>
               </li>
             </ul>

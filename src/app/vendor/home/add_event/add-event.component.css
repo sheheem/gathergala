@@ -21,6 +21,9 @@ button {
     width: 450px;
 }
 
+mat-form-field {
+    width: 80%;
+}
 
 /* input.ng-invalid.ng-touched {
     border: 1px solid red;

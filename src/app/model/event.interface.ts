@@ -1,15 +1,15 @@
+import { iVendorProfile } from "./profile.model";
+import { iTicket } from "./ticket.interface";
+
 export interface iEvent {
     _id: string;
-    organizerId: string;
+    organizerId: iVendorProfile;
     eventName: string;
     eventType: string;
     startDate: Date;
     endDate: Date;
     eventDescription: string;
-    ticketType: string;
-    ticketNumber: number;
-    ticketPrice: number;
-    ticketDescription: string;
+    tickets: iTicket[],
     imageUrl: string;
     location: string;
     longitude: number;

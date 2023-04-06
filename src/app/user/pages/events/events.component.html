@@ -115,9 +115,9 @@
                       <h5
                         class="font-bold tracking-tight text-primary dark:text-white md:text-lg md:leading-tight lg:pb-[2px]"
                       >
-                        {{ event.ticketPrice | currency : "INR" }}
+                        {{ event.tickets[0].ticketPrice | currency : "INR" }}
                       </h5>
-                      <span class="text-xs lg:text-sm">Price</span>
+                      <span class="text-xs lg:text-sm">Onwards</span>
                     </div>
                   </li>
                   <li

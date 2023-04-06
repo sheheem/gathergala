@@ -1,13 +1,12 @@
+import { iTicket } from "./ticket.interface"
+
 export interface AddEvent {
     eventName: string,
     eventTitle: string,
     startDate: Date,
     endDate: Date,
     eventDescription: string,
-    ticketType: string,
-    ticketCount: number,
-    ticketPrice: number,
-    ticketDescription: string,
+    ticket: iTicket,
     imageUrl: string,
     location: string
 }

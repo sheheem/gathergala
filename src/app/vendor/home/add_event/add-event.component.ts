@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+  FormArray,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { Feature, VendorService } from '../../vendor.service';
@@ -11,6 +19,7 @@ import { Feature, VendorService } from '../../vendor.service';
 })
 export class AddEventComponent implements OnInit {
   addEventForm: FormGroup;
+  ticketForm: FormGroup;
 
   addresses: { address: string; coordinates: number[] }[] = [];
   selectedAddress = null;
@@ -27,24 +36,33 @@ export class AddEventComponent implements OnInit {
 
   organizerId: string;
 
-  constructor(private _vendorService: VendorService) {}
+  constructor(
+    private _vendorService: VendorService,
+    private _formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.addEventForm = new FormGroup({
-      eventName: new FormControl(null, Validators.required),
-      eventType: new FormControl(null, Validators.required),
-      eventDescription: new FormControl(null, Validators.required),
-      image: new FormControl(null, Validators.required),
-      ticketType: new FormControl(null, Validators.required),
-      ticketNumber: new FormControl(null, Validators.required),
-      ticketPrice: new FormControl(null, Validators.required),
-      ticketDescription: new FormControl(null, Validators.required),
-      location: new FormControl(null, Validators.required),
-      start: new FormControl<Date | null>(null, Validators.required),
-      end: new FormControl<Date | null>(null, Validators.required),
-      longitude: new FormControl(null, Validators.required),
-      latitude: new FormControl(null, Validators.required),
+    
+    this.addEventForm = this._formBuilder.group({
+      eventName: [null, Validators.required],
+      eventType: [null, Validators.required],
+      eventDescription: [null, Validators.required],
+      image: [null, Validators.required],
+      ticket: this._formBuilder.array([]),
+      location: [null, Validators.required],
+      start: [null, Validators.required],
+      end: [null, Validators.required],
+      longitude: [null, Validators.required],
+      latitude: [null, Validators.required],
     });
+    // this.ticketForm = this._formBuilder.group({
+    //   ticketType: [null, Validators.required],
+    //   ticketNumber: [null, Validators.required],
+    //   ticketPrice: [null, Validators.required],
+    //   ticketDescription: [null, Validators.required],
+    // });
+
+    
 
     (mapboxgl as any).accessToken = environment.mapbox.accessToken;
     this.map = new mapboxgl.Map({
@@ -66,7 +84,19 @@ export class AddEventComponent implements OnInit {
     });
   }
 
-  addEvent() {}
+  get_ticket(): FormArray {
+    return this.addEventForm.get('ticket') as FormArray;
+  }
+
+  addTicket() {
+    const ticket = this._formBuilder.group({
+      ticketType: [null, Validators.required],
+      ticketNumber: [null, Validators.required],
+      ticketPrice: [null, Validators.required],
+      ticketDescription: [null, Validators.required],
+    });
+    (this.addEventForm.get('ticket') as FormArray).push(ticket);
+  }
 
   onFileSelect(event: Event) {
     this.selectedFile = (event.target as HTMLInputElement).files[0];
@@ -136,17 +166,22 @@ export class AddEventComponent implements OnInit {
     // this.addresses = [];
   }
 
-  onSubmit() {
-    if (this.addEventForm.invalid) {
-      alert('error');
-      return;
-    }
 
+  onSubmit() {
     this._vendorService
       .upload_image(this.url, this.selectedFile)
       .subscribe((response) => {
         this.imageUrl = this.url.split('?')[0];
         this.addEventForm.patchValue({ image: this.imageUrl });
+        console.log(this.imageUrl);
+        
+        console.log(this.addEventForm.controls)
+
+        if (this.addEventForm.invalid) {
+          console.log(this.addEventForm);
+          alert('error');
+          return;
+        }
 
         const addEvent = {
           organizerId: this.organizerId,
@@ -154,10 +189,7 @@ export class AddEventComponent implements OnInit {
           eventType: this.addEventForm.controls.eventType.value,
           eventDescription: this.addEventForm.controls.eventDescription.value,
           imageUrl: this.addEventForm.controls.image.value,
-          ticketType: this.addEventForm.controls.ticketType.value,
-          ticketNumber: this.addEventForm.controls.ticketNumber.value,
-          ticketPrice: this.addEventForm.controls.ticketPrice.value,
-          ticketDescription: this.addEventForm.controls.ticketDescription.value,
+          tickets: this.addEventForm.controls.ticket.value,
           location: this.addEventForm.controls.location.value,
           startDate: this.addEventForm.controls.start.value,
           endDate: this.addEventForm.controls.end.value,
@@ -170,7 +202,7 @@ export class AddEventComponent implements OnInit {
           console.log(res);
 
           this.addEventForm.reset();
-          alert('Event added')
+          alert('Event added');
         });
       });
   }

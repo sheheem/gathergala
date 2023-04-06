@@ -1,0 +1,22 @@
+.check{fill:none;
+    stroke:black;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-miterlimit:10;
+  }
+  
+  .check {
+      stroke-dasharray: 60 200;
+      animation: check 2.75s cubic-bezier(0.5, 0, 0.6, 1) forwards 0.0s; 
+      opacity: 0;
+  }
+  
+  @-webkit-keyframes check {
+      from {stroke-dashoffset: 60;
+    opacity: 1;}
+  
+      to {stroke-dashoffset: 293;
+      opacity: 1;}
+  }
+  
+  

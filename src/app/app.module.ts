@@ -14,7 +14,6 @@ import { AuthGuard } from './vendor/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     CommonModule,

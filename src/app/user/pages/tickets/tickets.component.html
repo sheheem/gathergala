@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<div class="header-wrapper bg-accent text-white">
+    <div class="page-heading pt-8 pb-12 text-center md:pt-16 md:pb-28">
+      <div class="container">
+        <h1
+          class="relative mb-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl"
+        >
+          Tickets
+        </h1>
+        <ol
+          class="relative flex flex-wrap justify-center divide-x-2 divide-white text-xs font-bold uppercase leading-none"
+        >
+          <li class="px-[10px]"><a routerLink="/">Home</a></li>
+          <li class="px-[10px]">Events</li>
+          <li class="px-[10px]">Event Detail</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <mat-progress-bar 
+  *ngIf="isloading"
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+      </mat-progress-bar>
+
+
+
+ 
+    <div class="container mx-auto mt-10">
+      <div class="flex shadow-md my-10">
+        <div class="w-3/4 bg-white px-10 py-10">
+          <div class="flex justify-between border-b pb-8">
+            <h1 class="font-semibold text-2xl">Tickets</h1>
+          </div>
+          <div class="flex mt-10 mb-5">
+            <h3 class="font-semibold text-gray-600 text-xs uppercase w-5/12">Ticket Details</h3>
+            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-3/12">Quantity</h3>
+            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-4/12">Price</h3>
+          </div>
+          <div *ngFor="let ticket of tickets; let i = index;"  class="" >
+
+            
+            <app-ticketdetails [ticket]="ticket" (unToggleButtonEvent)="onRecievedToggleEvent()" (quantities)="onReceivedQuantities($event)" #childRef></app-ticketdetails>
+         
+          </div>
+        </div>
+  
+        <div id="summary" class="w-1/4 px-8 py-10">
+          <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+          <div class="flex justify-between mt-10 mb-5">
+            <span class="font-semibold text-sm uppercase">Convenience Charge</span>
+            <span class="font-semibold text-sm">{{25 | currency: 'INR'}}</span>
+          </div>
+          
+          
+          
+          <div class="border-t mt-8">
+            <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+              <span>Total cost</span>
+              <span *ngIf="this.quantities==0">{{0 | currency: 'INR'}} </span>
+              <span *ngIf="this.quantities !== 0"> {{total() | currency: 'INR'}} </span>
+            </div>
+            <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+
+  
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+<!-- <a href="#" class="flex font-semibold text-indigo-600 text-sm mt-10">
+        
+            <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/></svg>
+            Continue Shopping
+          </a>  -->

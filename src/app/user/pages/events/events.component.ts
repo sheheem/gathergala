@@ -13,29 +13,27 @@ export class EventsComponent implements OnInit {
 
   events: iEvent[]= []
 
-  getCurrentDate(): Date {
-    const currentDate = new Date()
-    currentDate.toLocaleDateString
-    console.log(currentDate);
+  // getCurrentDate(): Date {
+  //   const currentDate = new Date()
+  //   currentDate.toLocaleDateString
+  //   console.log(currentDate);
     
-    return currentDate;
-  }
+  //   return currentDate;
+  // }
 
   constructor(private _userService: UserService, private _route: Router) {}
 
   ngOnInit(): void {
    this._userService.findAllEvents().subscribe({
         next: (response) => {
-          console.log(response);
-          
           this.events = response.event
+          console.log(this.events);
           
         },
         error: (err) => {
           console.log(err);
         }
       })
-      this.getCurrentDate()
   }
 
   viewDetail(eventId) {

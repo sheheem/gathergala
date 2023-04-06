@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 import { UserComponent } from './user.component';
@@ -17,6 +18,9 @@ import { EventDetailComponent } from './pages/event-detail/event-detail.componen
 import { AuthGuard } from './auth/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { TicketsComponent } from './pages/tickets/tickets.component';
+import { SuccessComponent } from './pages/success/success.component';
+import { TicketDetailComponent } from './pages/tickets/tickeDetail.component';
 
 
 const routes: Routes = [
@@ -28,7 +32,8 @@ const routes: Routes = [
       { path: 'signup', component: SignupComponent },
       { path: 'login', component: LoginComponent },
       { path: 'events', component: EventsComponent },
-      { path: 'event-detail/:id', component: EventDetailComponent },
+      { path: 'event-detail/:id', component: EventDetailComponent},
+      { path: 'tickets/:id', component: TicketsComponent},
       { path: 'checkout', component: CheckOutComponent }
     ]
   }
@@ -45,6 +50,9 @@ const routes: Routes = [
     EventsComponent,
     CheckOutComponent,
     EventDetailComponent,
+    TicketsComponent,
+    SuccessComponent,
+    TicketDetailComponent
   ],
 
   imports: [
@@ -52,7 +60,8 @@ const routes: Routes = [
    CommonModule,
    ReactiveFormsModule,
    RouterModule.forChild(routes),
-   MatProgressSpinnerModule
+   MatProgressSpinnerModule,
+   MatProgressBarModule
   ],
   providers: [AuthGuard, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true

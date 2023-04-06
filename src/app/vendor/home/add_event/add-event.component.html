@@ -105,95 +105,78 @@
                       addEventForm.get('eventDescription').touched
                     "
                     class="text-sm text-red-700"
-                    >Please describe the events brefily</span
+                    >Please describe the events breifly</span
                   >
                 </mat-form-field>
               </div>
-              <div class="ml-10">
-                <mat-form-field>
-                  <mat-label>Ticket Type</mat-label>
-                  <input
-                    matInput
-                    formControlName="ticketType"
-                    placeholder="Ticket Type"
-                  />
-                  <span
-                    *ngIf="
-                      !addEventForm.get('ticketType').valid &&
-                      addEventForm.get('ticketType').touched
-                    "
-                    class="text-sm text-red-700"
-                    >Please enter a valid type</span
-                  >
-                </mat-form-field>
+
+              <div formArrayName="ticket">
+                <div
+                  *ngFor="
+                    let t of addEventForm.get('ticket')['controls'];
+                    let i = index
+                  "
+                  [formGroupName]="i"
+                >
+                  <div class="ml-10">
+                    <mat-form-field>
+                      <mat-label>Ticket Type</mat-label>
+                      <input matInput placeholder="Ticket Type" 
+                      formControlName="ticketType"
+                      type="text"/>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="ml-10">
+                    <mat-form-field>
+                      <mat-label>Number of Tickets</mat-label>
+                      <input
+                        matInput
+                        placeholder="Number of Tickets"
+                        formControlName="ticketNumber"
+                        type="number"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="ml-10">
+                    <mat-form-field>
+                      <mat-label>Ticket Price</mat-label>
+                      <input
+                        matInput
+                        placeholder="Ticket Price"
+                        formControlName="ticketPrice"
+                        type="number"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="ml-10 mt-2">
+                    <mat-form-field style="width: 400px" appearance="fill">
+                      <mat-label>Ticket Description</mat-label>
+                      <textarea
+                        matInput
+                        placeholder="Ticket Description"
+                        formControlName="ticketDescription"
+                        rows="5"
+                        cols="40"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
               </div>
-              <div class="ml-10">
-                <mat-form-field>
-                  <mat-label>Number of Tickets</mat-label>
-                  <input
-                    matInput
-                    formControlName="ticketNumber"
-                    placeholder="Number of Tickets"
-                    type="number"
-                  />
-                  <span
-                    *ngIf="
-                      !addEventForm.get('ticketNumber').valid &&
-                      addEventForm.get('ticketNumber').touched
-                    "
-                    class="text-xs text-red-700"
-                    >Please enter a valid number</span
-                  >
-                </mat-form-field>
-              </div>
-              <div class="ml-10">
-                <mat-form-field>
-                  <mat-label>Ticket Price</mat-label>
-                  <input
-                    matInput
-                    formControlName="ticketPrice"
-                    placeholder="Ticket Price"
-                    type="number"
-                  />
-                  <span
-                    *ngIf="
-                      !addEventForm.get('ticketPrice').valid &&
-                      addEventForm.get('ticketPrice').touched
-                    "
-                    class="text-sm text-red-700"
-                    >Please enter a valid price</span
-                  >
-                </mat-form-field>
-              </div>
-              <div class="ml-10 mt-2">
-                <mat-form-field style="width: 400px" appearance="fill">
-                  <mat-label>Ticket Description</mat-label>
-                  <textarea
-                    matInput
-                    formControlName="ticketDescription"
-                    placeholder="Ticket Description"
-                    rows="5"
-                    cols="40"
-                  ></textarea>
-                  <span
-                    *ngIf="
-                      !addEventForm.get('ticketDescription').valid &&
-                      addEventForm.get('ticketDescription').touched
-                    "
-                    class="text-sm text-red-700"
-                    >Please describe the privileges</span
-                  >
-                </mat-form-field>
-              </div>
-              <div class="ml-10">
+              <div class="ml-10 mb-5">
                 <button
+                  (click)="addTicket()"
                   type="button"
                   class="bg-transparent hover:bg-green-400 text-white font-semibold hover:text-white py-2 px-4 border-green-400 hover: border-transparent rounded"
                 >
                   Add Ticket
                 </button>
               </div>
+              <hr />
+
+              
             </div>
+
             <div class="w-[50%]">
               <div class="ml-5">
                 <input
@@ -243,7 +226,7 @@
                 </div>
               </div>
 
-              <div class="ml-4 mt-9 mr-5 text-end">
+              <div class="ml-4 mt-9 mr-5 text-end mr-20">
                 <button
                   type="submit"
                   mat-raised-button
