@@ -21,6 +21,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { SuccessComponent } from './pages/success/success.component';
 import { TicketDetailComponent } from './pages/tickets/tickeDetail.component';
+import { CancelComponent } from './pages/cancel/cancel.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,9 @@ const routes: Routes = [
       { path: 'events', component: EventsComponent },
       { path: 'event-detail/:id', component: EventDetailComponent},
       { path: 'tickets/:id', component: TicketsComponent},
-      { path: 'checkout', component: CheckOutComponent }
+      { path: 'checkout', component: CheckOutComponent },
+      { path: 'success', component: SuccessComponent },
+      { path: 'cancel', component: CancelComponent }
     ]
   }
 ]
@@ -52,7 +55,8 @@ const routes: Routes = [
     EventDetailComponent,
     TicketsComponent,
     SuccessComponent,
-    TicketDetailComponent
+    TicketDetailComponent,
+    CancelComponent
   ],
 
   imports: [

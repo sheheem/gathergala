@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
 
 })
 export class TicketDetailComponent implements OnInit {
-  @Output() quantities = new EventEmitter<{quantity:number,price:number}>();
+  @Output() quantities = new EventEmitter<{quantity:number, price:number, id: string, type: string}>();
   @Output() unToggleButtonEvent = new EventEmitter<boolean>();
 
   @Input() eventId: string;
@@ -31,12 +31,13 @@ export class TicketDetailComponent implements OnInit {
     this.unToggleButtonEvent.emit()    
     this.showButton = !this.showButton;
     if(!this.showButton) {
-      this.quantities.emit({quantity:this.quantity,price:this.ticket.ticketPrice})
+      this.quantities.emit({quantity:this.quantity,price:this.ticket.ticketPrice, id: this.ticket._id, type: this.ticket.ticketType})
+      
     }
   }
 
   changeEvent(){
-    this.quantities.emit({quantity:this.quantity,price:this.ticket.ticketPrice})
+    this.quantities.emit({quantity:this.quantity, price:this.ticket.ticketPrice, id: this.ticket._id, type: this.ticket.ticketType})
   }
 
   toggleShowButton(){
