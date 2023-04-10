@@ -13,7 +13,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EventsComponent } from '../user/pages/events/events.component';
-import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { EventDetailComponent } from './pages/event-detail/event-detail.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -22,6 +21,9 @@ import { TicketsComponent } from './pages/tickets/tickets.component';
 import { SuccessComponent } from './pages/success/success.component';
 import { TicketDetailComponent } from './pages/tickets/tickeDetail.component';
 import { CancelComponent } from './pages/cancel/cancel.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { SplitPipe } from './components/pipes/split.pipe';
 
 
 const routes: Routes = [
@@ -34,10 +36,11 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'events', component: EventsComponent },
       { path: 'event-detail/:id', component: EventDetailComponent},
-      { path: 'tickets/:id', component: TicketsComponent},
-      { path: 'checkout', component: CheckOutComponent },
-      { path: 'success', component: SuccessComponent },
-      { path: 'cancel', component: CancelComponent }
+      { path: 'tickets/:id', component: TicketsComponent, canActivate: [AuthGuard] },
+      { path: 'success', component: SuccessComponent, canActivate: [AuthGuard] },
+      { path: 'cancel', component: CancelComponent, canActivate: [AuthGuard]},
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]}
     ]
   }
 ]
@@ -51,12 +54,14 @@ const routes: Routes = [
     NavbarComponent,
     FooterComponent,
     EventsComponent,
-    CheckOutComponent,
     EventDetailComponent,
     TicketsComponent,
     SuccessComponent,
     TicketDetailComponent,
-    CancelComponent
+    CancelComponent,
+    ProfileComponent,
+    OrdersComponent,
+    SplitPipe
   ],
 
   imports: [

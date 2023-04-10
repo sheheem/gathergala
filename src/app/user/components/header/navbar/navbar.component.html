@@ -56,6 +56,17 @@
                   routerLink="/signup"
                   >Sign Up
                 </a>
+                
+              </li>
+              <li
+                *ngIf="isAuth"
+                class="relative [&>.sub-menu]:hover:visible [&>.sub-menu]:hover:animate-popper-pop-in [&>.sub-menu]:hover:opacity-100"
+              >
+                <a
+                  class="relative inline-flex items-center gap-x-2 leading-10 after:absolute after:bottom-[7px] after:left-0 after:h-[2px] after:bg-white after:transition-transform after:w-full after:origin-right hover:after:origin-left after:scale-x-0 hover:after:scale-x-100"
+                  routerLink="/profile"
+                  >Profile
+                </a>
               </li>
               <li
                 *ngIf="isAuth"

@@ -1,7 +1,8 @@
 import { query } from '@angular/animations';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { iEvent } from 'src/app/model/event.interface';
+import { iOrder } from 'src/app/model/order.interface';
 import { iUserLogin } from 'src/app/model/user.model.interface';
 import { iUserProfle } from 'src/app/model/userProfile.interface';
 import { environment } from 'src/environments/environment';
@@ -42,5 +43,9 @@ export class UserService {
     let queryParams = new HttpParams()
     queryParams = queryParams.append("session_id", `${sessionId}`)
     return this._http.get(`${environment.api}/order/success`, {params: queryParams})
+  }
+
+  findOrder(userId){
+    return this._http.get<{orders: iOrder[]}>(`${environment.api}/order/findTicket/${userId}`)
   }
 }

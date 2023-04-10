@@ -44,7 +44,6 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit(): void {
     this.stripe = Stripe(environment.stripe_key);
-    console.log(this.stripe);
     
     this.eventId = this._route.snapshot.paramMap.get('id');
     this._userService.profile().subscribe({
@@ -94,6 +93,7 @@ export class TicketsComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isloading = true;
     const ticketCheckOut = {
       userId: this.userId,
       eventId: this.eventId,
@@ -108,6 +108,7 @@ export class TicketsComponent implements OnInit {
     console.log(ticketCheckOut.ticketPrice);
     
     this._userService.orderProcess(ticketCheckOut).subscribe((res) => {
+      this.isloading = false;
       console.log(res);
       this.stripe.redirectToCheckout({
         sessionId: res.sessionId

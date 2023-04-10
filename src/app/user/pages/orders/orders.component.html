@@ -1,0 +1,137 @@
+<app-navbar></app-navbar>
+<div class="header-wrapper bg-accent text-white">
+    <div class="page-heading pt-8 pb-12 text-center md:pt-16 md:pb-28">
+      <div class="container">
+        <h1
+          class="relative mb-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl"
+        >
+          Orders
+        </h1>
+        <ol
+          class="relative flex flex-wrap justify-center divide-x-2 divide-white text-xs font-bold uppercase leading-none"
+        >
+          <li class="px-[10px]"><a routerLink="/">Home</a></li>
+          <li class="px-[10px]">Orders</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <mat-progress-bar 
+  *ngIf="isloading"
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+      </mat-progress-bar>
+
+
+  <main id="main-content" class="grow lg:pt-0">
+    <section class="pt-14 pb-24 lg:pb-52 lg:pt-40">
+        <div class="container">
+            <div class="grid grid-cols-12 gap-y-12 md:gap-x-6 lg:gap-x-7.5 content-start">
+                <aside class="col-span-full md:col-span-4">
+                    <div class="sticky lg:top-8 xl:top-10">
+                        <div class="mb-10">
+                            <h2
+                                class="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white md:mb-2 md:text-2xl lg:text-3.5xl">
+                                {{userName | uppercase }}</h2>
+                            <h3
+                                class="text-lg font-bold leading-tight tracking-tight text-accent lg:text-xl xl:text-[26px]">
+                                Welcome!</h3>
+                        </div>
+                        <nav class="py-1">
+                            <ul class="flex flex-col gap-y-4 font-bold leading-tight lg:gap-y-6 lg:text-lg">
+                                <li class=""><a
+                                        class="text-lg transition-all text-primary opacity-100 hover:text-accent dark:text-white dark:hover:text-accent"
+                                        routerLink="/profile" >Profile</a></li>
+                                <li class=""><a
+                                        class="text-lg transition-all opacity-60 hover:opacity-100 hover:text-primary dark:hover:text-white"
+                                        routerLink="/Orders" >Orders</a></li>
+                                <li class="mt-5"><a
+                                        class="text-lg transition-all opacity-60 hover:opacity-100 hover:text-primary dark:hover:text-white"
+                                        href="_yt1-login.html">Logout</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+                <div class="col-span-full md:col-span-8">
+                    <h2
+                        class="mb-8 text-2xl font-bold tracking-tight text-primary dark:text-white md:text-2xl lg:mb-16 lg:text-3.5xl">
+                        Orders <span class="text-accent"></span></h2>
+                        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="default-search" class="block w-96 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Events" required>
+                            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        </div>
+
+                    <div *ngFor="let order of orders" class="mt-5">
+                        <div class="ticket p-5">
+                            <div class="left">
+                                <div class="image" style="background-image: url({{order.eventId.imageUrl}});">
+                                    <p class="admit-one">
+                                        <span>ADMIT ONE</span>
+                                        <span>ADMIT ONE</span>
+                                        <span>ADMIT ONE</span>
+                                    </p>
+                                    <div class="ticket-number">
+                                        <p>
+                                            {{order.ticketId}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="ticket-info">
+                                    <p class="date">
+                                        <span>{{order.eventId.startDate | date: 'EEEE' | uppercase}} </span>
+                                        <span class="june-29">{{order.eventId.startDate | date: 'MMMM dd' }} </span>
+                                        <span>{{order.eventId.startDate | date: 'yyyy'}}</span>
+                                    </p>
+                                    <div class="show-name mt-2">
+                                        <h1>SOUR Prom</h1>
+                                        <h2>{{order.ticketType}} </h2>
+                                    </div>
+                                    <div class="time">
+                                        <p>8:00 PM <span>TO</span> 11:00 PM</p>
+                                        <p>DOORS <span>@</span> 7:00 PM</p>
+                                    </div>
+                                    <p class="location"><span>East High School</span>
+                                        <span class="separator"><i class="far fa-smile"></i></span><span>Salt Lake City, Utah</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <p class="admit-one">
+                                    <span>ADMIT ONE</span>
+                                    <span>ADMIT ONE</span>
+                                    <span>ADMIT ONE</span>
+                                </p>
+                                <div class="right-info-container">
+                                    <div class="show-name">
+                                        <h1>SOUR Prom</h1>
+                                    </div>
+                                    <div class="time">
+                                        <p>8:00 PM <span>TO</span> 11:00 PM</p>
+                                        <p>DOORS <span>@</span> 7:00 PM</p>
+                                    </div>
+                                    <div class="barcode">
+                                        <img src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb"  alt="QR code">
+                                    </div>
+                                    <p class="ticket-number">
+                                        {{order.ticketType | split: 1}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<app-footer></app-footer>
