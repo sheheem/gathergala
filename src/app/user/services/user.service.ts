@@ -1,5 +1,5 @@
 import { query } from '@angular/animations';
-import { HttpBackend, HttpClient, HttpParams } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { iEvent } from 'src/app/model/event.interface';
 import { iOrder } from 'src/app/model/order.interface';
@@ -47,5 +47,22 @@ export class UserService {
 
   findOrder(userId){
     return this._http.get<{orders: iOrder[]}>(`${environment.api}/order/findTicket/${userId}`)
+  }
+
+  updateProfile(userId, data) {
+    return this._http.put(`${environment.api}/user/updateUser/${userId}`, data)
+  }
+
+  getImageUrl() {
+    return this._http.get<{url: string}>(`${environment.api}/s3url`);
+  }
+
+
+  upload_image(url: string, file: any) {
+    const headerOption = {
+      "Content-Type": "multipart/form-data",
+      skip:"true"
+    }
+    return this._http.put(url, file, {headers: new HttpHeaders(headerOption) } )
   }
 }

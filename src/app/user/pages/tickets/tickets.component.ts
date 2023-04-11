@@ -7,6 +7,7 @@ import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 import { TicketDetailComponent } from './tickeDetail.component';
 import { environment } from 'src/environments/environment';
+import { Title } from '@angular/platform-browser';
 
 declare var Stripe;
 
@@ -40,9 +41,11 @@ export class TicketsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _userService: UserService,
+    private _title: Title
   ) {}
 
   ngOnInit(): void {
+    this._title.setTitle('Tickets')
     this.stripe = Stripe(environment.stripe_key);
     
     this.eventId = this._route.snapshot.paramMap.get('id');

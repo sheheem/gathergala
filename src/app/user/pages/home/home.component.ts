@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { JwtService } from 'src/app/jwt.service';
 import Swiper from 'swiper';
 
@@ -11,9 +12,10 @@ export class UserHomeComponent implements OnInit, AfterViewInit {
   swiperProducts: Swiper;
   isAuth: boolean = false;
   
-  constructor(private _jwtService: JwtService) {}
+  constructor(private _jwtService: JwtService, private _title: Title) {}
 
   ngOnInit() {
+    this._title.setTitle('Home')
     const token = this._jwtService.getUserToken();
     if(token) {
       this.isAuth = true

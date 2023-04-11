@@ -23,6 +23,7 @@
     "canvas-confetti": "^1.6.0",
     "flowbite": "^1.6.3",
     "mapbox-gl": "^2.13.0",
+    "mat-progress-buttons": "^9.3.1",
     "moment": "^2.29.4",
     "rxjs": "~7.8.0",
     "swiper": "^9.1.1",

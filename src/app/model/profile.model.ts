@@ -4,4 +4,5 @@ export interface iVendorProfile {
     email: string,
     password: string,
     addressess: [],
+    
 }

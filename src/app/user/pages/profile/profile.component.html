@@ -1,125 +1,204 @@
 <app-navbar></app-navbar>
 
 <div class="header-wrapper bg-accent text-white">
-    <div class="page-heading pt-8 pb-12 text-center md:pt-16 md:pb-28">
-      <div class="container">
-        <h1
-          class="relative mb-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl"
-        >
-          Profile
-        </h1>
-        <ol
-          class="relative flex flex-wrap justify-center divide-x-2 divide-white text-xs font-bold uppercase leading-none"
-        >
-          <li class="px-[10px]"><a routerLink="/">Home</a></li>
-          <li class="px-[10px]">Profile</li>
-        </ol>
-      </div>
+  <div class="page-heading pt-8 pb-12 text-center md:pt-16 md:pb-28">
+    <div class="container">
+      <h1
+        class="relative mb-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl"
+      >
+        Profile
+      </h1>
+      <ol
+        class="relative flex flex-wrap justify-center divide-x-2 divide-white text-xs font-bold uppercase leading-none"
+      >
+        <li class="px-[10px]"><a routerLink="/">Home</a></li>
+        <li class="px-[10px]">Profile</li>
+      </ol>
     </div>
   </div>
-  <mat-progress-bar 
+</div>
+<mat-progress-bar
   *ngIf="isloading"
-          class="example-margin"
-          [color]="color"
-          [mode]="mode"
-          [value]="value"
-          [bufferValue]="bufferValue">
-      </mat-progress-bar>
+  class="example-margin"
+  [color]="color"
+  [mode]="mode"
+  [value]="value"
+  [bufferValue]="bufferValue"
+>
+</mat-progress-bar>
 
 <main id="main-content" class="grow lg:pt-0">
-    <section class="pt-14 pb-24 lg:pb-52 lg:pt-40">
-        <div class="container">
-            <div class="grid grid-cols-12 gap-y-12 md:gap-x-6 lg:gap-x-7.5 content-start">
-                <aside class="col-span-full md:col-span-4">
-                    <div class="sticky lg:top-8 xl:top-10">
-                        <div class="mb-10">
-                            <h2
-                                class="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white md:mb-2 md:text-2xl lg:text-3.5xl">
-                                {{userName | uppercase}} </h2>
-                            <h3
-                                class="text-lg font-bold leading-tight tracking-tight text-accent lg:text-xl xl:text-[26px]">
-                                Welcome!</h3>
-                        </div>
-                        <nav class="py-1">
-                            <ul class="flex flex-col gap-y-4 font-bold leading-tight lg:gap-y-6 lg:text-lg">
-                                <li class=""><a
-                                        class="text-lg transition-all text-primary opacity-100 hover:text-accent dark:text-white dark:hover:text-accent"
-                                        href="_yt1-account-info.html">Profile</a></li>
-                                <li class=""><a
-                                        class="text-lg transition-all text-primary opacity-100 hover:text-accent dark:text-white dark:hover:text-accent"
-                                        routerLink="/orders" >Orders</a></li>
-                                <li class="mt-5"><a
-                                        class="text-lg transition-all opacity-60 hover:opacity-100 hover:text-primary dark:hover:text-white"
-                                        href="_yt1-login.html">Logout</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </aside>
-                <div class="col-span-full md:col-span-8">
-                    <h2
-                        class="mb-8 text-2xl font-bold tracking-tight text-primary dark:text-white md:text-2xl lg:mb-16 lg:text-3.5xl">
-                        Personal Info <span class="text-accent"></span></h2>
-                    <div>
-                        <form class="grid grid-cols-6 gap-x-7 gap-y-7 md:gap-x-7 lg:gap-x-[30px]" action="#">
-                            <fieldset class="col-span-full flex flex-wrap justify-between gap-6 pt-2 pb-3">
-                                <div class="flex gap-x-4 lg:gap-x-7">
-                                    <figure><img src="assets/img/yt1/samples/user-4-100x100.jpg"
-                                            alt="James Spiegel"></figure>
-                                    <div class="flex-1">
-                                        <h5
-                                            class="mb-1 font-bold leading-tight text-primary dark:text-white md:text-lg md:leading-tight">
-                                            Your Profile Photo</h5>
-                                        <div class="text-sm">100x100 minimum resolution</div>
-                                    </div>
-                                </div><label
-                                    class="inline-flex basis-full items-center justify-center self-start bg-primary py-4 px-6 text-center text-sm font-bold leading-tight text-white transition-colors hover:cursor-pointer hover:bg-accent sm:basis-auto md:px-7 lg:py-4 lg:px-12 lg:text-sm lg:leading-none lg:text-white"
-                                    for="user-profile-img">Browse... <input class="hidden" type="file"
-                                        name="user-profile-img" id="user-profile-img"></label>
-                            </fieldset>
-                            <div class="col-span-full md:col-span-3"><input
-                                    class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
-                                    type="text" name="user-first-name" id="user-first-name" value=""
-                                    placeholder="First Name">
-                                <p class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger">
-                                </p>
-                            </div>
-                            <div class="col-span-full md:col-span-3"><input
-                                    class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
-                                    type="text" name="user-last-name" id="user-last-name" value=""
-                                    placeholder="Last Name">
-                                <p class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger">
-                                </p>
-                            </div>
-                            <div class="col-span-full md:col-span-3"><input
-                                    class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
-                                    type="email" name="user-email" id="user-email" value="" placeholder="Email">
-                                <p class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger">
-                                </p>
-                            </div>
-                            <div class="col-span-full md:col-span-3"><input
-                                    class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
-                                    type="text" name="user-nickname" id="user-nickname" value=""
-                                    placeholder="Username (optional)">
-                                <p class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger">
-                                </p>
-                            </div>
-                            <div class="col-span-full md:col-span-3"><input
-                                    class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
-                                    type="number" name="phone" id="user-change-password"
-                                    value="" placeholder="Phone No.">
-                                <p class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger">
-                                </p>
-                            </div>
-                            
-                            <div class="col-span-full pt-8"><input
-                                    class="block w-full bg-accent py-5 text-lg font-bold leading-normal tracking-tight text-white transition-colors hover:cursor-pointer hover:bg-accent/90"
-                                    type="submit" value="Save Changes"></div>
-                        </form>
-                    </div>
-                </div>
+  <section class="pt-14 pb-24 lg:pb-52 lg:pt-40">
+    <div class="container">
+      <div
+        class="grid grid-cols-12 gap-y-12 md:gap-x-6 lg:gap-x-7.5 content-start"
+      >
+        <aside class="col-span-full md:col-span-4">
+          <div class="sticky lg:top-8 xl:top-10">
+            <div class="mb-10">
+              <h2
+                class="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white md:mb-2 md:text-2xl lg:text-3.5xl"
+              >
+                {{ profile.name | uppercase }}
+              </h2>
+              <h3
+                class="text-lg font-bold leading-tight tracking-tight text-accent lg:text-xl xl:text-[26px]"
+              >
+                Welcome!
+              </h3>
             </div>
+            <nav class="py-1">
+              <ul
+                class="flex flex-col gap-y-4 font-bold leading-tight lg:gap-y-6 lg:text-lg"
+              >
+                <li class="">
+                  <a
+                    class="text-lg transition-all text-primary opacity-100 hover:text-accent dark:text-white dark:hover:text-accent"
+                    href="_yt1-account-info.html"
+                    >Profile</a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    class="text-lg transition-all text-primary opacity-100 hover:text-accent dark:text-white dark:hover:text-accent"
+                    routerLink="/orders"
+                    >Orders</a
+                  >
+                </li>
+                <li class="mt-5">
+                  <a
+                    class="text-lg transition-all opacity-60 hover:opacity-100 hover:text-primary dark:hover:text-white"
+                    (click)="onLogOut()"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+        <div class="col-span-full md:col-span-8">
+          <h2
+            class="mb-8 text-2xl font-bold tracking-tight text-primary dark:text-white md:text-2xl lg:mb-16 lg:text-3.5xl"
+          >
+            Personal Info <span class="text-accent"></span>
+          </h2>
+          <div>
+            <form
+              class="grid grid-cols-6 gap-x-7 gap-y-7 md:gap-x-7 lg:gap-x-[30px]"
+              [formGroup]="updateProfileForm"
+              (ngSubmit)="onSaveChanges()"
+            >
+              <fieldset
+                class="col-span-full flex flex-wrap justify-between gap-6 pt-2 pb-3"
+              >
+                <div class="flex gap-x-4 lg:gap-x-7">
+                  <figure>
+                    <img [src]="previewImage" alt="Profile Image" />
+                  </figure>
+                  <div class="flex-1">
+                    <h5
+                      class="mb-1 font-bold leading-tight text-primary dark:text-white md:text-lg md:leading-tight"
+                    >
+                      Your Profile Photo
+                    </h5>
+                    <div class="text-sm">100x100 minimum resolution</div>
+                  </div>
+                  <label
+                    class="inline-flex basis-full items-center justify-center self-start bg-primary py-4 px-6 text-center text-sm font-bold leading-tight text-white transition-colors hover:cursor-pointer hover:bg-accent sm:basis-auto md:px-7 lg:py-4 lg:px-12 lg:text-sm lg:leading-none lg:text-white"
+                    for="user-profile-img"
+                    >Browse...
+                    <input
+                      class="hidden"
+                      type="file"
+                      id="user-profile-img"
+                      (change)="onFileSelect($event)"
+                  /></label>
+                </div>
+              </fieldset>
+              <div class="col-span-full md:col-span-3">
+                <input
+                  class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
+                  type="text"
+                  formControlName="firstName"
+                  id="user-first-name"
+                  value="{{ profile.firstName }}"
+                  placeholder="First Name"
+                />
+                <p
+                  class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger"
+                ></p>
+              </div>
+              <div class="col-span-full md:col-span-3">
+                <input
+                  class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
+                  type="text"
+                  formControlName="lastName"
+                  id="user-last-name"
+                  value="{{ profile.lastName }}"
+                  placeholder="Last Name"
+                />
+                <p
+                  class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger"
+                ></p>
+              </div>
+              <div class="col-span-full md:col-span-3">
+                <input
+                  class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
+                  type="email"
+                  formControlName="email"
+                  id="user-email"
+                  value="{{ profile.email }}"
+                  placeholder="Email"
+                />
+                <p
+                  class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger"
+                ></p>
+              </div>
+              <div class="col-span-full md:col-span-3">
+                <input
+                  class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
+                  type="text"
+                  formControlName="name"
+                  id="user-nickname"
+                  value="{{ profile.name }}"
+                  placeholder="Username"
+                />
+                <p
+                  class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger"
+                ></p>
+              </div>
+              <div class="col-span-full md:col-span-3">
+                <input
+                  class="group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500 w-full px-7 py-4"
+                  type="number"
+                  formControlName="phone"
+                  id="user-change-password"
+                  value="{{ profile.phone }}"
+                  placeholder="Phone No."
+                />
+                <p
+                  class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger"
+                ></p>
+              </div>
+
+              <div class="col-span-full pt-8 flex">
+                <!-- <input
+                  class="block w-full bg-accent py-5 text-lg font-bold leading-normal tracking-tight text-white transition-colors hover:cursor-pointer hover:bg-accent/90"
+                  type="submit"
+                  value="Save Changes"
+
+                /> -->
+                <button mode="indeterminate" color="primary" type="submit" [disabled]="updateProfileForm.invalid || isloading" class="block w-full bg-accent py-5 text-lg font-bold leading-normal tracking-tight text-white transition-colors hover:cursor-pointer hover:bg-accent/90">
+                    <span *ngIf="!isloading">Save</span>
+                    <mat-spinner *ngIf="isloading" diameter="20"></mat-spinner>
+                  </button>
+              </div>
+            </form>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>
 
 <app-footer></app-footer>

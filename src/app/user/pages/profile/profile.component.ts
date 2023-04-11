@@ -5,6 +5,8 @@ import { Title } from '@angular/platform-browser';
 import { UserService } from '../../services/user.service';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
+import { iUserProfle } from 'src/app/model/userProfile.interface';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -13,8 +15,16 @@ import { ProgressBarMode } from '@angular/material/progress-bar';
 })
 export class ProfileComponent implements OnInit {
 
+  updateProfileForm: FormGroup;
+
   userId: string;
-  userName: string;
+  profile: iUserProfle;
+
+  selectedFile: File | undefined;
+  previewImage = '../../../../assets/user-4-100x100.jpg';
+  url: string;
+  imageUrl: string;
+
   color: ThemePalette = 'accent';
   mode: ProgressBarMode = 'indeterminate';
   value = 50;
@@ -26,7 +36,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const title = this._title.setTitle('Profile')
-    this.id()
+    this.id();
+
+   
   }
 
   id(){
@@ -34,13 +46,85 @@ export class ProfileComponent implements OnInit {
     this._userService.profile().subscribe({
       next: (response) => {
         this.isloading = false
-        console.log(response);
-        this.userName = response.profile.name
+        this.profile = response.profile
+        this.userId = response.profile._id
+        this.updateProfileForm = new FormGroup({
+          firstName: new FormControl(this.profile?.firstName, Validators.required),
+          lastName: new FormControl(this.profile?.lastName, Validators.required),
+          image: new FormControl(this.profile?.image, Validators.required),
+          phone: new FormControl(this.profile?.phone, Validators.required),
+          name: new FormControl(this.profile?.name, Validators.required)
+      })
+
+      this.previewImage = response.profile.image
+        
       },
       error: (err) => {
         console.log(err);
         }
     })
+  }
+
+  onFileSelect(event: Event) {
+    this.selectedFile = (event.target as HTMLInputElement).files[0];
+    console.log(this.selectedFile);
+    
+    this.updateProfileForm.get('image').updateValueAndValidity();
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewImage = reader.result as string;
+    };
+    reader.readAsDataURL(this.selectedFile);
+    this._userService.getImageUrl().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.url = response.url
+      },
+      error: (err) => {
+        console.log(err);
+        
+      }
+    })
+  }
+
+  onSaveChanges() {
+    console.log(this.updateProfileForm);
+    
+    this.isloading = true;
+    this._userService.upload_image(this.url, this.selectedFile).subscribe({
+      next: (response) => {
+        console.log(this.url);
+        
+        this.imageUrl = this.url.split('?')[0];
+        this.updateProfileForm.patchValue({image: this.imageUrl})
+
+        const updatedForm = {
+          firstName: this.updateProfileForm.controls.firstName.value,
+          lastName: this.updateProfileForm.controls.lastName.value,
+          phone: this.updateProfileForm.controls.phone.value,
+          name: this.updateProfileForm.controls.name.value,
+          image: this.updateProfileForm.controls.image.value
+        }    
+        console.log(updatedForm.image);
+
+        this._userService.updateProfile(this.userId, updatedForm).subscribe({
+          next: (response) => {
+        this.isloading = false
+            console.log(response);
+          },
+          error: (err) => {
+            console.log(err);
+            
+          }
+        })
+        
+      }
+    })
+
+    
+    
+    
   }
  
   onLogOut() {

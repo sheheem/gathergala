@@ -1,17 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { JwtService } from 'src/app/jwt.service';
 import { UserService } from '../../services/user.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   @ViewChild('info') loginForm?: NgForm;
   isError: boolean = false;
   errorMessage: string = '';
@@ -20,8 +21,13 @@ export class LoginComponent {
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
 
-  constructor(private _userService: UserService, private _jwtService: JwtService, private _router: Router) {}
+  ngOnInit(): void {
+      this._title.setTitle('Login')
+  }
 
+  constructor(private _userService: UserService, private _jwtService: JwtService, private _router: Router, private _title: Title) {}
+
+  
   // email = new FormControl('', [Validators.required, Validators.email]);
 
   // getErrorMessage() {

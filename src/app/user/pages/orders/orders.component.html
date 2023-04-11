@@ -90,7 +90,7 @@
                                         <span>{{order.eventId.startDate | date: 'yyyy'}}</span>
                                     </p>
                                     <div class="show-name mt-2">
-                                        <h1>SOUR Prom</h1>
+                                        <h1 class="mb-2">{{order.eventName | split: 1 | uppercase}} </h1>
                                         <h2>{{order.ticketType}} </h2>
                                     </div>
                                     <div class="time">
@@ -110,7 +110,7 @@
                                 </p>
                                 <div class="right-info-container">
                                     <div class="show-name">
-                                        <h1>SOUR Prom</h1>
+                                        <h1>{{order.eventName | split: 2}}</h1>
                                     </div>
                                     <div class="time">
                                         <p>8:00 PM <span>TO</span> 11:00 PM</p>

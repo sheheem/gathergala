@@ -16,6 +16,14 @@
     </div>
   </div>
 </div>
+<mat-progress-bar 
+  *ngIf="isloading"
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+      </mat-progress-bar>
 
 <div>
   <div>
@@ -63,7 +71,7 @@
                   >
                 </h2>
                 <div class="lg:text-lg lg:leading-8 lg:tracking-tight">
-                  <p>{{ event.eventDescription }}</p>
+                  <p>{{ event.eventDescription | split: 52 }}</p>
                 </div>
                 <ul class="flex flex-wrap gap-y-5 pt-9 lg:pt-14 xl:gap-x-24">
                   <li
@@ -120,7 +128,7 @@
                       <span class="text-xs lg:text-sm">Onwards</span>
                     </div>
                   </li>
-                  <li
+                  <!-- <li
                     class="flex basis-full gap-x-4 leading-tight sm:basis-1/2 xl:basis-auto"
                   >
                     <div class="lg:pt-1">
@@ -137,7 +145,7 @@
                       </h5>
                       <span class="text-xs lg:text-sm">Organizer</span>
                     </div>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>

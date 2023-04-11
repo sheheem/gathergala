@@ -3,6 +3,9 @@ import { iEvent } from 'src/app/model/event.interface';
 import { UserService } from '../../services/user.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-events',
@@ -12,6 +15,12 @@ import { Router } from '@angular/router';
 export class EventsComponent implements OnInit {
 
   events: iEvent[]= []
+  color: ThemePalette = 'accent';
+  mode: ProgressBarMode = 'indeterminate';
+  value = 50;
+  bufferValue = 75;
+  isloading = false
+
 
   // getCurrentDate(): Date {
   //   const currentDate = new Date()
@@ -21,11 +30,14 @@ export class EventsComponent implements OnInit {
   //   return currentDate;
   // }
 
-  constructor(private _userService: UserService, private _route: Router) {}
+  constructor(private _userService: UserService, private _route: Router, private _title: Title) {}
 
   ngOnInit(): void {
+    this._title.setTitle('Events')
+    this.isloading=true
    this._userService.findAllEvents().subscribe({
         next: (response) => {
+          this.isloading=false
           this.events = response.event
           console.log(this.events);
           

@@ -8,6 +8,6 @@ export class SplitPipe implements PipeTransform {
     const words = value.split(' ');
     const trimmedWords = words.slice(0, limit);
     const trimmedSentence = trimmedWords.join(' ');
-    return trimmedSentence + (words.length > limit ? '.' : '');
+    return trimmedSentence + (words.length > limit ? '...' : '');
   }
 }

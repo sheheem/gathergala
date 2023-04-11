@@ -20,6 +20,14 @@
     </div>
   </div>
 </div>
+<mat-progress-bar 
+  *ngIf="isloading"
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+      </mat-progress-bar>
 
 <main id="main-content" class="grow lg:pt-0">
   <div class="pt-14 pb-24 lg:pb-52 lg:pt-40">
@@ -145,7 +153,7 @@
                       <h5
                         class="font-bold tracking-tight text-primary dark:text-white md:text-lg md:leading-tight lg:pb-[2px]"
                       >
-                        {{event.organizerId.name}}
+                        {{event.organizerId.name | uppercase}}
                       </h5>
                       <span class="text-xs lg:text-sm">Organizer</span>
                     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-success',
@@ -15,10 +16,12 @@ export class SuccessComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _title: Title
   ) {}
 
   ngOnInit(): void {
+    this._title.setTitle('Success')
     this._route.queryParams.subscribe((params) => {
       this.sessionId = params.session_id;
     });
