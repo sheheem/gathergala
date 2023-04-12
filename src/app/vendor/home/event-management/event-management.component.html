@@ -1,45 +1,58 @@
-<div class="container ">
+<div>
+  <div class="flex">
+    <app-navbar></app-navbar>
+  </div>
+  <div class="flex w-screen h-screen justify-center pl-40 md:p-20">
+    <div class="">
+      <app-sidebar></app-sidebar>
+    </div>
     <div>
-        <app-navbar></app-navbar>
-    </div>
-   <div >
-    <div class="w-3/12 mb-28">
-        <app-sidebar></app-sidebar>
-    </div>
-
-
-     <div class="flex  justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2 p-2">
-            <div class="">
-                <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="/docs/images/blog/image-4.jpg" alt="">
-                    <div class="flex flex-col justify-between p-4 leading-normal">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    </div>
-                </a>
+      <div class="mb-10">
+        <p class="text-[black] font-semibold text-3xl">Manage Your Events</p>
+      </div>
+      <div>
+        <div class="min-w-48 w-[55vw] lg:flex h-60" *ngFor="let event of events">
+          <div
+            class="h-52 lg:h-auto w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            style="
+              background-image: url({{event.imageUrl}});
+            "
+            title="Woman holding a mug"
+          ></div>
+          <div
+            class="min-w-48 border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
+          >
+            <div class="mb-8">
+              <p class="text-sm text-grey-dark flex items-center">
+                
+                {{event.eventType}}
+              </p>
+              <div class="text-black font-bold text-xl mb-2">
+                {{event.eventName}}
+              </div>
+              <p class="text-grey-darker text-base">
+                {{event.eventDescription}}
+              </p>
             </div>
-
-
-            <div class="">
-                <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="/docs/images/blog/image-4.jpg" alt="">
-                    <div class="flex flex-col justify-between p-4 leading-normal">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    </div>
-                </a>
+            <div class="flex justify-end">
+              <div class="text-sm">
+                
+                <button mat-raised-button color="primary" (click)="viewDetail(event._id)">
+                  EDIT
+                </button>
+              
+                <button mat-raised-button color="warn" class="ml-2">
+                  DELETE
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-
-        
+      </div>
     </div>
+  </div>
 
-
-
-
-
-    <!-- <div class="lg:flex flex-col justify-start items-center w-full h-screen gap-2 ">
+  <!-- <div class="lg:flex flex-col justify-start items-center w-full h-screen gap-2 ">
       
         <div class="w-6/12">
             <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -61,6 +74,4 @@
             </a>
         </div>
     </div> -->
-    
-   </div>
 </div>

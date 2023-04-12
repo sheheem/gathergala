@@ -74,6 +74,7 @@ const routes: Routes = [
    MatProgressBarModule,
    MatProgressButtonsModule,
   ],
+  exports: [SplitPipe],
   providers: [AuthGuard, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
   }]

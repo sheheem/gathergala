@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { iVendorProfile } from '../model/profile.model';
 import { VendorLogin } from '../model/vendor-login.interface';
 import { VendorSignUp } from '../model/vendor-signup.interface';
+import { iEvent } from '../model/event.interface';
 
 export interface MapboxOutput {
   attribution: string;
@@ -72,12 +73,19 @@ export class VendorService {
       "Content-Type": "multipart/form-data",
       skip:"true"
     }
-    return this.http.put(url, file, {headers: new HttpHeaders(headerOption) } )
+    return this.http.put(url, file, {headers: new HttpHeaders(headerOption) } );
   }
 
   createEvent(data){
-    return this.http.post(`${environment.api}/event/add_event`, data)
+    return this.http.post(`${environment.api}/event/add_event`, data);
   }
 
+  eventsHosted(id) {
+    return this.http.get<{events: iEvent[]}>(`${environment.api}/vendor/eventsManage/${id}`);
+  }
+
+  eventDetail(id) {
+    return this.http.get<{eventDetail: iEvent}>(`${environment.api}/vendor/event/edit/${id}`);
+  }
 
 }

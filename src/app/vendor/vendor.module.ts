@@ -26,6 +26,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EventManagementComponent } from './home/event-management/event-management.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { EventEditComponent } from './home/event-edit/event-edit.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
       { path: 'signup', component: VendorSignupComponent },
       { path: 'login', component: VendorLoginComponent },
       { path: 'add_event', component: AddEventComponent,  canActivate:[AuthGuard] },
-      { path: 'event_management', component: EventManagementComponent, canActivate:[AuthGuard] }
+      { path: 'event_management', component: EventManagementComponent, canActivate:[AuthGuard] },
+      { path: 'edit_event/:id', component: EventEditComponent, canActivate:[AuthGuard]}
     ],
   },
 ];
@@ -52,6 +54,7 @@ const routes: Routes = [
     NavbarComponent,
     AddEventComponent,
     EventManagementComponent,
+    EventEditComponent,
   ],
   
   imports: [
@@ -71,7 +74,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatIconModule,
     MatButtonModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [AuthGuard, 
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

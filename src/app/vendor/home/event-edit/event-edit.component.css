@@ -1,0 +1,17 @@
+button {
+    background-color: green;
+}
+
+#map-mapbox {
+    width: 85%;
+    height: 300px;
+    background-color: red;
+}
+
+.location {
+    width: 450px;
+}
+
+mat-form-field {
+    width: 80%;
+}

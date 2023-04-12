@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   FormGroup,
   FormControl,
   Validators,
   FormBuilder,
   FormArray,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import * as mapboxgl from 'mapbox-gl';

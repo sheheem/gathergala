@@ -1,0 +1,244 @@
+<div class="flex flex-col">
+    <app-navbar></app-navbar>
+    <div class="flex w-screen h-screen">
+      <div class="flex">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div
+        class="flex-auto md:flex-auto lg:ml-80 lg:mr-20 mt-20 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
+      >
+        <mat-card>
+          <mat-card-content>
+            <p class="font-semibold text-3xl pl-5">Edit Your Event</p>
+  
+            <form class="flex" [formGroup]="editEventForm" (ngSubmit)="onSubmit()">
+              <div class="w-[50%]">
+                <div class="ml-10 mt-5">
+                  <mat-form-field>
+                    <mat-label>Event Name</mat-label>
+                    <input
+                      matInput
+                      formControlName="eventName"
+                      placeholder="Event Name"
+                      value="{{event.eventName}}"
+                    />
+                    <span
+                      *ngIf="
+                        !editEventForm.get('eventName').valid
+                      "
+                      class="text-sm text-red-700"
+                      >Please enter a valid title</span
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="ml-10">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Event Type</mat-label>
+                    <input
+                      matInput
+                      formControlName="eventType"
+                      placeholder="Event Type"
+                    />
+                    <span
+                      *ngIf="
+                        !editEventForm.get('eventType').valid
+                      "
+                      class="text-sm text-red-700"
+                      >Please enter a valid type</span
+                    >
+                  </mat-form-field>
+                </div>
+  
+                <div class="ml-10">
+                  <mat-form-field>
+                    <mat-label>Start and End Date </mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input
+                        matStartDate
+                        formControlName="start"
+                        placeholder="Start date"
+                      />
+                      <input
+                        matEndDate
+                        formControlName="end"
+                        placeholder="End date"
+                      />
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+  
+                    <mat-error
+                      *ngIf="
+                      editEventForm.controls.start.hasError(
+                          'matStartDateInvalid'
+                        )
+                      "
+                      >Invalid start date</mat-error
+                    >
+                    <mat-error
+                      *ngIf="
+                      editEventForm.controls.end.hasError('matEndDateInvalid')
+                      "
+                      >Invalid end date</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="ml-10 mt-5">
+                  <mat-form-field style="width: 400px" appearance="fill">
+                    <mat-label>Event Description</mat-label>
+                    <textarea
+                      matInput
+                      type="text"
+                      formControlName="eventDescription"
+                      placeholder="Event Description"
+                      rows="5"
+                      cols="40"
+                    ></textarea>
+                    <span
+                      *ngIf="
+                        !editEventForm.get('eventDescription').valid 
+                      "
+                      class="text-sm text-red-700"
+                      >Please describe the events briefly</span
+                    >
+                  </mat-form-field>
+                </div>
+  
+                <div formArrayName="ticket">
+                  <div
+                    *ngFor="
+                      let t of editEventForm.get('ticket')['controls'];
+                      let i = index
+                    "
+                    [formGroupName]="i"
+                  >
+                    <div class="ml-10">
+                      <mat-form-field>
+                        <mat-label>Ticket Type</mat-label>
+                        <input matInput placeholder="Ticket Type" 
+                        formControlName="ticketType"
+                        type="text"/>
+                      </mat-form-field>
+                    </div>
+  
+                    <div class="ml-10">
+                      <mat-form-field>
+                        <mat-label>Number of Tickets</mat-label>
+                        <input
+                          matInput
+                          placeholder="Number of Tickets"
+                          formControlName="ticketNumber"
+                          type="number"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="ml-10">
+                      <mat-form-field>
+                        <mat-label>Ticket Price</mat-label>
+                        <input
+                          matInput
+                          placeholder="Ticket Price"
+                          formControlName="ticketPrice"
+                          type="number"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="ml-10 mt-2">
+                      <mat-form-field style="width: 400px" appearance="fill">
+                        <mat-label>Ticket Description</mat-label>
+                        <textarea
+                          matInput
+                          placeholder="Ticket Description"
+                          formControlName="ticketDescription"
+                          rows="5"
+                          cols="40"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="ml-10 mb-5">
+                  <button
+                    (click)="addTicket()"
+                    type="button"
+                    class="bg-transparent hover:bg-green-400 text-white font-semibold hover:text-white py-2 px-4 border-green-400 hover: border-transparent rounded"
+                  >
+                    Add Ticket
+                  </button>
+                </div>
+                <hr />
+  
+                
+              </div>
+  
+              <div class="w-[50%]">
+                <div class="ml-5">
+                  <input
+                    class="mb-2"
+                    type="file"
+                    (change)="onFileSelect($event)"
+                  /><br />
+                  <img
+                    [src]="imagePreview"
+                    class="h-auto max-w-lg md:max-w-md transition-all duration-300 rounded-lg blur-sm hover:blur-none"
+                    alt=""
+                  />
+                </div>
+  
+                <div class="ml-4 mt-9">
+                  <div>
+                    <mat-form-field class="location">
+                      <mat-label>Venue</mat-label>
+                      <input
+                        matInput
+                        formControlName="location"
+                        placeholder="location"
+                        [matAutocomplete]="auto"
+                        (input)="search($event)"
+                        [value]="selectedAddress"
+                      />
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option
+                          *ngFor="let data of addresses"
+                          (click)="onSelect(data.address, data.coordinates)"
+                        >
+                          {{ data.address }}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <div
+                        *ngIf="
+                        editEventForm.get('location').touched &&
+                        editEventForm.get('location').invalid
+                        "
+                      >
+                        <span class="text-xs text-red-700"
+                          >Please enter a valid location</span
+                        >
+                      </div>
+                    </mat-form-field>
+                    <div id="map-mapbox"></div>
+                  </div>
+                </div>
+  
+                <div class="ml-4 mt-9 text-end mr-20">
+                  <button
+                    type="submit"
+                    mat-raised-button
+                    color="primary"
+                    class="green-500"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
