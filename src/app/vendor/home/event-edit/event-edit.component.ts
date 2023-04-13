@@ -21,6 +21,7 @@ export class EventEditComponent implements OnInit {
   editEventForm: FormGroup;
   eventId: string;
   event: iEvent;
+  vendorId: string;
 
   imageUrl: string;
   imagePreview: string;
@@ -43,7 +44,18 @@ export class EventEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventId = this._route.snapshot.paramMap.get('id');
+    this._vendorService.profile().subscribe({
+      next: (response) => {
+        this.vendorId = response.profile._id
+        console.log(this.vendorId);
+        
+      },
+      error: (err) => {
+        console.log(err); 
+      }
+    })
 
+    
     this._vendorService.eventDetail(this.eventId).subscribe({
       next: (response) => {
         this.event = response.eventDetail;
@@ -182,31 +194,45 @@ export class EventEditComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.editEventForm);
+    
     this._vendorService.upload_image(this.url, this.selectedFile).subscribe({
       next: (response) => {
         this.imageUrl = this.url.split('?')[0];
         this.editEventForm.patchValue({ image: this.imageUrl });
+
+        const editForm = {
+          organizerId: this.vendorId,
+          eventName: this.editEventForm.controls.eventName.value,
+          eventType: this.editEventForm.controls.eventType.value,
+          eventDescription: this.editEventForm.controls.eventDescription.value,
+          imageUrl: this.editEventForm.controls.image.value,
+          tickets: this.editEventForm.controls.ticket.value,
+          location: this.editEventForm.controls.location.value,
+          startDate: this.editEventForm.controls.start.value,
+          endDate: this.editEventForm.controls.end.value,
+          longitude: this.editEventForm.controls.longitude.value,
+          latitude: this.editEventForm.controls.latitude.value,
+        };
+        console.log(editForm);
+      this._vendorService.updateEvent(this.eventId, editForm).subscribe({
+        next: (response) => {
+          console.log(response);
+          this._router.navigate(['/vendor/event_management'])
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
       },
       error: (err) => {
         console.log(err);
       },
     });
 
-    if (this.imageUrl) {
-      const editForm = {
-        organizerId: this.event._id,
-        eventName: this.editEventForm.controls.eventName.value,
-        eventType: this.editEventForm.controls.eventType.value,
-        eventDescription: this.editEventForm.controls.eventDescription.value,
-        imageUrl: this.editEventForm.controls.imageUrl.value,
-        tickets: this.editEventForm.controls.ticket.value,
-        location: this.editEventForm.controls.location.value,
-        startDate: this.editEventForm.controls.start.value,
-        endDate: this.editEventForm.controls.end.value,
-        longitude: this.editEventForm.controls.longitude.value,
-        latitude: this.editEventForm.controls.latitude.value,
-      };
-      console.log(editForm);
-    }
+    
+      
+    
+
   }
 }

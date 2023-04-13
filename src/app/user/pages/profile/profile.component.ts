@@ -90,6 +90,8 @@ export class ProfileComponent implements OnInit {
 
   onSaveChanges() {
     console.log(this.updateProfileForm);
+    console.log(this.userId);
+    console.log(this.profile);
     
     this.isloading = true;
     this._userService.upload_image(this.url, this.selectedFile).subscribe({
@@ -106,7 +108,7 @@ export class ProfileComponent implements OnInit {
           name: this.updateProfileForm.controls.name.value,
           image: this.updateProfileForm.controls.image.value
         }    
-        console.log(updatedForm.image);
+        console.log(updatedForm);
 
         this._userService.updateProfile(this.userId, updatedForm).subscribe({
           next: (response) => {

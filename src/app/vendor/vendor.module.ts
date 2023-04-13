@@ -27,22 +27,39 @@ import { EventManagementComponent } from './home/event-management/event-manageme
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { EventEditComponent } from './home/event-edit/event-edit.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     component: VendorComponent,
     children: [
-      { path: '', component: HomeComponent, canActivate:[AuthGuard]},
+      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'signup', component: VendorSignupComponent },
       { path: 'login', component: VendorLoginComponent },
-      { path: 'add_event', component: AddEventComponent,  canActivate:[AuthGuard] },
-      { path: 'event_management', component: EventManagementComponent, canActivate:[AuthGuard] },
-      { path: 'edit_event/:id', component: EventEditComponent, canActivate:[AuthGuard]}
+      {
+        path: 'add_event',
+        component: AddEventComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'event_management',
+        component: EventManagementComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'edit_event/:id',
+        component: EventEditComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+      },
     ],
   },
 ];
-
 
 @NgModule({
   declarations: [
@@ -55,8 +72,9 @@ const routes: Routes = [
     AddEventComponent,
     EventManagementComponent,
     EventEditComponent,
+    DashboardComponent,
   ],
-  
+
   imports: [
     CommonModule,
     FormsModule,
@@ -70,14 +88,15 @@ const routes: Routes = [
     MatSidenavModule,
     MatSelectModule,
     MatInputModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
     MatButtonModule,
     MatAutocompleteModule,
   ],
-  providers: [AuthGuard, 
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-  ]
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
 })
-export class VendorModule { }
+export class VendorModule {}

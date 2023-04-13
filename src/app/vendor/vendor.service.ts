@@ -88,4 +88,8 @@ export class VendorService {
     return this.http.get<{eventDetail: iEvent}>(`${environment.api}/vendor/event/edit/${id}`);
   }
 
+  updateEvent(id, data) {
+    return this.http.post(`${environment.api}/vendor/event_update/${id}`, data )
+  }
+
 }

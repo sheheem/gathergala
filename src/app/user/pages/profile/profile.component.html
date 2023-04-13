@@ -188,7 +188,7 @@
                   value="Save Changes"
 
                 /> -->
-                <button mode="indeterminate" color="primary" type="submit" [disabled]="updateProfileForm.invalid || isloading" class="block w-full bg-accent py-5 text-lg font-bold leading-normal tracking-tight text-white transition-colors hover:cursor-pointer hover:bg-accent/90">
+                <button mode="indeterminate" color="primary" type="submit"  class="block w-full bg-accent py-5 text-lg font-bold leading-normal tracking-tight text-white transition-colors hover:cursor-pointer hover:bg-accent/90">
                     <span *ngIf="!isloading">Save</span>
                     <mat-spinner *ngIf="isloading" diameter="20"></mat-spinner>
                   </button>

@@ -3,6 +3,7 @@ import { HttpBackend, HttpClient, HttpHeaders, HttpParams } from '@angular/commo
 import { Injectable } from '@angular/core';
 import { iEvent } from 'src/app/model/event.interface';
 import { iOrder } from 'src/app/model/order.interface';
+import { iSignUpUser } from 'src/app/model/signUpUser.interface';
 import { iUserLogin } from 'src/app/model/user.model.interface';
 import { iUserProfle } from 'src/app/model/userProfile.interface';
 import { environment } from 'src/environments/environment';
@@ -13,6 +14,11 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
   constructor(private _http: HttpClient) { }
+
+  signUpUser(email:string, password: string, name: string, phone: number) {
+    const userSignUp: iSignUpUser = {name: name, email: email, password: password, phone: phone};
+    return this._http.post(`${environment.api}/auth/signup`, userSignUp);
+  }
 
   loginUser(email: string, password: string) {
     const userLogin: iUserLogin = {email: email, password: password};
