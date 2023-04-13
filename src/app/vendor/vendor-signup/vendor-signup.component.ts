@@ -1,19 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VendorService } from '../vendor.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-vendor-signup',
   templateUrl: './vendor-signup.component.html',
   styleUrls: ['./vendor-signup.component.css'],
 })
-export class VendorSignupComponent {
-  constructor(private vendorService: VendorService, private router: Router) {}
+export class VendorSignupComponent implements OnInit {
+  constructor(private vendorService: VendorService, private router: Router, private _title: Title) {}
 
   @ViewChild('info') signupForm?: NgForm;
   errorTrue: boolean = false;
   errorMessage: string = ''
+
+  ngOnInit(): void {
+      this._title.setTitle('Sign Up')
+  }
 
 
   onSubmit = () => {

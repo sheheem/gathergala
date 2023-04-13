@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
   Validators,
   FormBuilder,
   FormArray,
@@ -9,6 +8,10 @@ import {
 import { environment } from 'src/environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { Feature, VendorService } from '../../vendor.service';
+import { Title } from '@angular/platform-browser';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -16,8 +19,14 @@ import { Feature, VendorService } from '../../vendor.service';
   styleUrls: ['./add-event.component.css'],
 })
 export class AddEventComponent implements OnInit {
+  isLoading = false;
   addEventForm: FormGroup;
   ticketForm: FormGroup;
+
+  color: ThemePalette = 'accent';
+  mode: ProgressBarMode = 'indeterminate';
+  value = 50;
+  bufferValue = 75;
 
   addresses: { address: string; coordinates: number[] }[] = [];
   selectedAddress = null;
@@ -36,10 +45,13 @@ export class AddEventComponent implements OnInit {
 
   constructor(
     private _vendorService: VendorService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _title: Title,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
+    this._title.setTitle('Add Event')
     
     this.addEventForm = this._formBuilder.group({
       eventName: [null, Validators.required],
@@ -76,7 +88,9 @@ export class AddEventComponent implements OnInit {
   }
 
   vendorId() {
+    this.isLoading = true
     this._vendorService.profile().subscribe((res) => {
+      this.isLoading = false;
       this.organizerId = res.profile._id;
       console.log(this.organizerId);
     });
@@ -107,7 +121,9 @@ export class AddEventComponent implements OnInit {
     };
     reader.readAsDataURL(this.selectedFile);
 
+    this.isLoading = true;
     this._vendorService.getImageUrl().subscribe((res) => {
+      this.isLoading = false;
       this.url = res.url;
     });
   }
@@ -166,9 +182,11 @@ export class AddEventComponent implements OnInit {
 
 
   onSubmit() {
+    this.isLoading = true;
     this._vendorService
       .upload_image(this.url, this.selectedFile)
       .subscribe((response) => {
+        this.isLoading = false;
         this.imageUrl = this.url.split('?')[0];
         this.addEventForm.patchValue({ image: this.imageUrl });
         console.log(this.imageUrl);
@@ -194,13 +212,13 @@ export class AddEventComponent implements OnInit {
           longitude: this.addEventForm.controls.longitude.value,
           latitude: this.addEventForm.controls.latitude.value,
         };
-        console.log(addEvent);
 
+        this.isLoading = true
         this._vendorService.createEvent(addEvent).subscribe((res) => {
-          console.log(res);
-
+          this.isLoading = false
           this.addEventForm.reset();
           alert('Event added');
+          this._router.navigate(['/vendor/event_management'])
         });
       });
   }

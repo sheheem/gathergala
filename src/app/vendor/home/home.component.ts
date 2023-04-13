@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from '../vendor.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,14 @@ import { VendorService } from '../vendor.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private vendorService: VendorService ) {}
+  constructor(private vendorService: VendorService, private _title: Title ) {}
 
   ngOnInit():void  {
+    this._title.setTitle('Home')
     this.vendorService.profile().subscribe({next:(response)=> {
       console.log(response);
       
-    }, error:(err)=>{
-      console.log('hihihihihihi--------------------------------');
-      
+    }, error:(err)=>{      
       console.log(err);
       
     }})

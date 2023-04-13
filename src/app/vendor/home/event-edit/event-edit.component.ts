@@ -11,6 +11,7 @@ import { Feature, VendorService } from '../../vendor.service';
 import { iEvent } from 'src/app/model/event.interface';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event-edit',
@@ -39,10 +40,12 @@ export class EventEditComponent implements OnInit {
     private _route: ActivatedRoute,
     private _vendorService: VendorService,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _title: Title
   ) {}
 
   ngOnInit(): void {
+    this._title.setTitle('Edit Events')
     this.eventId = this._route.snapshot.paramMap.get('id');
     this._vendorService.profile().subscribe({
       next: (response) => {

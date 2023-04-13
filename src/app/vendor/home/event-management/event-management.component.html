@@ -11,7 +11,7 @@
         <p class="text-[black] font-semibold text-3xl">Manage Your Events</p>
       </div>
       <div>
-        <div class="min-w-48 w-[55vw] lg:flex h-60" *ngFor="let event of events">
+        <div class="min-w-48 w-[55vw] lg:flex h-60 mb-5" *ngFor="let event of events">
           <div
             class="h-52 lg:h-auto w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             style="
@@ -30,7 +30,7 @@
               <div class="text-black font-bold text-xl mb-2">
                 {{event.eventName}}
               </div>
-              <p class="text-grey-darker text-base">
+              <p class="text-grey-darker text-base overflow-hidden">
                 {{event.eventDescription}}
               </p>
             </div>

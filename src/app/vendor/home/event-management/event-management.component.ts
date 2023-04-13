@@ -3,6 +3,7 @@ import { VendorService } from '../../vendor.service';
 import { iVendorProfile } from 'src/app/model/profile.model';
 import { iEvent } from 'src/app/model/event.interface';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event-management',
@@ -15,9 +16,10 @@ export class EventManagementComponent implements OnInit {
   events: iEvent[]=[];
   event: iEvent;
 
-  constructor(private _vendorService: VendorService, private _router: Router){}
+  constructor(private _vendorService: VendorService, private _router: Router, private _title: Title){}
 
 ngOnInit(): void {
+  this._title.setTitle('Manage Events')
     this._vendorService.profile().subscribe({
       next: (response) => {
         console.log(response);

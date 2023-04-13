@@ -1,9 +1,18 @@
 <div class="flex flex-col">
   <app-navbar></app-navbar>
+  
   <div class="flex w-screen h-screen">
     <div class="flex">
       <app-sidebar></app-sidebar>
     </div>
+    <mat-progress-bar 
+  *ngIf="isLoading"
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+      </mat-progress-bar>
     <div
       class="flex-auto md:flex-auto lg:ml-80 lg:mr-20 mt-20 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
     >

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VendorService } from '../../vendor.service';
 import { iVendorProfile } from 'src/app/model/profile.model';
 import Chart from 'chart.js/auto';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +15,10 @@ export class DashboardComponent implements OnInit {
 
   vendorDetail: iVendorProfile;
 
-  constructor(private _vendorService: VendorService){}
+  constructor(private _vendorService: VendorService, private _title: Title){}
 
   ngOnInit(): void {
+    this._title.setTitle('Dashboard')
       this._vendorService.profile().subscribe({
         next: (response) => {
           this.vendorDetail = response.profile;

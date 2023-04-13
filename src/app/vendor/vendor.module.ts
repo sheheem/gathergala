@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 import { VendorComponent } from './vendor.component';
 import { VendorLoginComponent } from './vendor-login/vendor-login.component';
@@ -93,6 +95,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatAutocompleteModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthGuard,
