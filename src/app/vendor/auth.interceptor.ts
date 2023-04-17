@@ -21,8 +21,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     const token = this.jwtService.getToken();
     const userToken = this.jwtService.getUserToken()
-    console.log(userToken);
-    
     const headersConfig = {
       'Content-Type': 'application/json',
       Accept: 'application/json',

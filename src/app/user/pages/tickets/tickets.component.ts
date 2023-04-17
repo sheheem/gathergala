@@ -72,9 +72,6 @@ export class TicketsComponent implements OnInit {
         console.log(err);
       },
     });
-
-
-
   }
 
   onReceivedQuantities(object:{quantity: number,price:number, id: string, type: string}) {
@@ -100,12 +97,14 @@ export class TicketsComponent implements OnInit {
     const ticketCheckOut = {
       userId: this.userId,
       eventId: this.eventId,
+      organizerId: this.event.organizerId._id,
       ticketId: this.ticketId,
       ticketPrice: this.newPrice,
       totalTickets: this.quantities,
       totalPrice: this.totalPrice,
       ticketType: this.ticketName,
-      eventName: this.event.eventName
+      eventName: this.event.eventName,
+      orderDate: new Date()
     }
 
     console.log(ticketCheckOut.ticketPrice);

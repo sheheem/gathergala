@@ -7,6 +7,7 @@ import { iVendorProfile } from '../model/profile.model';
 import { VendorLogin } from '../model/vendor-login.interface';
 import { VendorSignUp } from '../model/vendor-signup.interface';
 import { iEvent } from '../model/event.interface';
+import { iOrder } from '../model/order.interface';
 
 export interface MapboxOutput {
   attribution: string;
@@ -90,6 +91,10 @@ export class VendorService {
 
   updateEvent(id, data) {
     return this.http.post(`${environment.api}/vendor/event_update/${id}`, data )
+  }
+
+  dashBoard(vendorId) {
+    return this.http.get<{orders: iOrder[]}>(`${environment.api}/order/orderByVendor/${vendorId}`)
   }
 
 }

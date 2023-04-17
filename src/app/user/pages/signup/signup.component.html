@@ -16,10 +16,15 @@
                 <div class="flex justify-center text-center">
                   <img class="mx-0 w-28" src="../../../assets/logo.png" />
                 </div>
+                <mat-spinner class="mx-auto" *ngIf="isLoading" [color]="color" [mode]="mode" [value]="value"></mat-spinner>
                 <form (ngSubmit)="onSubmit()" #info="ngForm">
                   <p class="mb-4 font-semibold text-xl">
                     Create your GatherGala Account
                   </p>
+                  <span
+                  class="text-red-500"
+                  *ngIf="isError"
+                  >{{errorMessage}}</span>
                   <div class="mb-4">
                     <label class="font-medium"> Name </label>
                     <input
@@ -111,10 +116,12 @@
                     >
                       Log in
                     </button>
-                    <a class="text-gray-500" href="#!">Forgot password?</a>
+                    <a class="text-gray-500" >Forgot password?</a>
                   </div>
                   <div class="flex items-center justify-between pb-6">
-                    <p class="mb-0 mr-2">Don't have an account?</p>
+                    <p class="mb-0 mr-2">Have an account?
+                      <a routerLink="/login" class="text-blue-400"> &nbsp; Login</a>
+                    </p>
                   </div>
                 </form>
               </div>
