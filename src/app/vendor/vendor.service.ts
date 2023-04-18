@@ -93,6 +93,10 @@ export class VendorService {
     return this.http.post(`${environment.api}/vendor/event_update/${id}`, data )
   }
 
+  deleteEvent(eventId) {
+    return this.http.delete(`${environment.api}/event/delete_event/${eventId}`);
+  }
+
   dashBoard(vendorId) {
     return this.http.get<{orders: iOrder[]}>(`${environment.api}/order/orderByVendor/${vendorId}`)
   }

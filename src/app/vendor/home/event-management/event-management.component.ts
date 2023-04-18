@@ -48,4 +48,15 @@ viewDetail(eventId) {
   this._router.navigate(['/vendor/edit_event', eventId])
 }
 
+deleteEvent(eventId) {
+  this._vendorService.deleteEvent(eventId).subscribe({
+    next: (response) => {
+      console.log("Event deleted successfully");
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  });
+}
+
 }

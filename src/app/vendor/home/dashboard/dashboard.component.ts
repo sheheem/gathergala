@@ -5,6 +5,7 @@ import Chart from 'chart.js/auto';
 import { Title } from '@angular/platform-browser';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { iOrder } from 'src/app/model/order.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,47 +16,68 @@ export class DashboardComponent implements OnInit {
   chart: any;
 
   vendorDetail: iVendorProfile;
-  months: string[] = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
+  orderData: iOrder[];
+  months: string[] = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   constructor(private _vendorService: VendorService, private _title: Title) {}
 
   ngOnInit(): void {
     this._title.setTitle('Dashboard');
-    this.getVendorDetails()
-    // this._vendorService.profile().subscribe({
-    //   next: (response) => {
-    //     this.vendorDetail = response.profile;
-    //     console.log(this.vendorDetail._id);
-
-    //     this._vendorService.eventsHosted(this.vendorDetail._id).subscribe({
-    //       next: (response) => {
-    //         console.log(response.events);
-    //         this.createChart();
-    //       },
-    //       error: (err) => {
-    //         console.log(err);
-    //       },
-    //     });
-    //   },
-    // });
+    this.getVendorDetails();
   }
 
-  getVendorDetails():void {
-    this._vendorService.profile().pipe(tap(response => {
-      this.vendorDetail = response.profile
-    }),
-    switchMap(() => this._vendorService.dashBoard(this.vendorDetail._id)),
-    catchError(error => {
-      console.log(error);
-      return throwError('Error Fetching Events');
-    })
-    ).subscribe(response => {
-      console.log(response.orders);
-      this.createChart()
-    });
+  getVendorDetails(): void {
+    this._vendorService
+      .profile()
+      .pipe(
+        tap((response) => {
+          this.vendorDetail = response.profile;
+        }),
+        switchMap(() => this._vendorService.dashBoard(this.vendorDetail._id)),
+        catchError((error) => {
+          console.log(error);
+          return throwError('Error Fetching Events');
+        })
+      )
+      .subscribe((response) => {
+        const targetYear = 2023;
+        const targetMonth = 3;
+        console.log(response.orders);
+        const filteredOrders = response.orders;
+        filteredOrders
+          .map((orders) => {
+            return {
+              date: new Date(orders.orderDate),
+              price: orders.totalPrice,
+            };
+          })
+          .filter((orders) => {
+            return orders.date.getFullYear() && orders.date.getMonth();
+          });
+        const totalSales = filteredOrders.reduce((acc, orders) => {
+          return acc + orders.totalPrice;
+        }, 0);
+        
+          this.createChart(totalSales);
+        
+       
+      });
   }
 
-  createChart() {
+  createChart(sales) {
     this.chart = new Chart('MyChart', {
       type: 'bar', //this denotes tha type of chart
       data: {
@@ -69,9 +91,9 @@ export class DashboardComponent implements OnInit {
           //   backgroundColor: 'blue'
           // },
           {
-            label: 'Profit',
-            data: ['542', '542', '536', '327', '17', '0.00', '538', '541'],
-            backgroundColor: 'limegreen',
+            label: 'Sales',
+            data: [0,0,0,0,0,0,0,0,0,0,0,0],
+            backgroundColor: 'orange',
           },
         ],
       },
@@ -79,5 +101,11 @@ export class DashboardComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+    const salesDataset = this.chart.data.datasets.find(dataset => dataset.label === 'Sales');
+  if (salesDataset) {
+    const aprilIndex = this.months.indexOf('Apr');
+    salesDataset.data[aprilIndex] = sales;
+    this.chart.update();
+  }
   }
 }
