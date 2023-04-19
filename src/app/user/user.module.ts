@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { MatProgressButtonsModule } from 'mat-progress-buttons'
 
 
 import { UserComponent } from './user.component';
@@ -72,7 +71,6 @@ const routes: Routes = [
    RouterModule.forChild(routes),
    MatProgressSpinnerModule,
    MatProgressBarModule,
-   MatProgressButtonsModule,
   ],
   exports: [SplitPipe],
   providers: [AuthGuard, {

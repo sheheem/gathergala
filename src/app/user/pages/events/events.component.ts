@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { iEvent } from 'src/app/model/event.interface';
 import { UserService } from '../../services/user.service';
-import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ThemePalette } from '@angular/material/core';
