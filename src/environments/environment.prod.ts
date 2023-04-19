@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    api: 'api.gathergala.online',
+    api: 'https://api.gathergala.online',
     mapbox: {
         accessToken: 'pk.eyJ1Ijoic2hlaGVlbSIsImEiOiJjbGV0amtqMjEwNTE2M3htazVpNzJzNGF4In0.jSdDYmLOENXEFTu1pvNIyg'
       },
