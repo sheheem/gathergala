@@ -20,8 +20,8 @@
         <mat-card-content>
           <p class="font-semibold text-3xl pl-5">Plan Your Event</p>
 
-          <form class="flex" [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
-            <div class="w-[50%]">
+          <form class="flex justify-center flex-col md:flex-row " [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+            <div class="md:w-[50%]">
               <div class="ml-10 mt-5">
                 <mat-form-field>
                   <mat-label>Event Name</mat-label>
@@ -186,7 +186,7 @@
               
             </div>
 
-            <div class="w-[50%]">
+            <div class="md:w-[50%]">
               <div class="ml-5">
                 <input
                   class="mb-2"

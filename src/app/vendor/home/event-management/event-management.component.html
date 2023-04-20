@@ -2,7 +2,7 @@
   <div class="flex">
     <app-navbar></app-navbar>
   </div>
-  <div class="flex w-screen h-screen justify-center pl-40 md:p-20">
+  <div class="flex w-screen h-screen justify-center pl- sm:pl-40 md:p-20">
     <div class="">
       <app-sidebar></app-sidebar>
     </div>
@@ -22,7 +22,7 @@
           <div
             class="min-w-48 border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
           >
-            <div class="mb-8">
+            <div class="">
               <p class="text-sm text-grey-dark flex items-center">
                 
                 {{event.eventType}}
@@ -30,12 +30,17 @@
               <div class="text-black font-bold text-xl mb-2">
                 {{event.eventName}}
               </div>
-              <p class="text-grey-darker text-base overflow-hidden">
+              <p class="text-grey-darker text-base overflow-scroll h-24">
+                {{event.eventDescription}}
+                {{event.eventDescription}}
+                {{event.eventDescription}}
+                {{event.eventDescription}}
+                {{event.eventDescription}}
                 {{event.eventDescription}}
               </p>
             </div>
             <div class="flex justify-end">
-              <div class="text-sm">
+              <div class="text-sm flex justify-center">
                 
                 <button mat-raised-button color="primary" (click)="viewDetail(event._id)">
                   EDIT
