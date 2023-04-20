@@ -24,6 +24,7 @@ import { CancelComponent } from './pages/cancel/cancel.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { SplitPipe } from './components/pipes/split.pipe';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,9 @@ const routes: Routes = [
       { path: 'success', component: SuccessComponent, canActivate: [AuthGuard] },
       { path: 'cancel', component: CancelComponent, canActivate: [AuthGuard]},
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-      { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]}
+      { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
+      { path: '**', pathMatch: 'full', 
+        component: NotFoundComponent },
     ]
   }
 ]
@@ -61,7 +64,8 @@ const routes: Routes = [
     CancelComponent,
     ProfileComponent,
     OrdersComponent,
-    SplitPipe
+    SplitPipe,
+    NotFoundComponent
   ],
 
   imports: [
