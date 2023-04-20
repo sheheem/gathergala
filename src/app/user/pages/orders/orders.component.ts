@@ -12,7 +12,7 @@ import { Title } from '@angular/platform-browser'
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent implements OnInit, AfterContentInit {
+export class OrdersComponent implements OnInit {
 
   userId: string;
   userName: string;
@@ -42,18 +42,12 @@ export class OrdersComponent implements OnInit, AfterContentInit {
       
   }
 
-  ngAfterContentInit(): void {
-      console.log(this.userId);
-      
-  }
-
   id(userId) {
     this.isloading=true
     this._userService.findOrder(userId).subscribe({
       next: (response) => {
         this.isloading=false
         this.orders = response.orders
-        console.log(this.orders);
       },
       error: (err) => {
         console.log(err);

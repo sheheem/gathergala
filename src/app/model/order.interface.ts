@@ -2,6 +2,7 @@ export interface iOrder {
     userId: string,
     orderId: string,
     orderDate: Date,
+    organizerId: string,
     eventId: {
         imageUrl: string,
         startDate: Date,
