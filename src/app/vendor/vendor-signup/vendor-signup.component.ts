@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VendorService } from '../vendor.service';
 import { Title } from '@angular/platform-browser';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-vendor-signup',
@@ -15,6 +17,14 @@ export class VendorSignupComponent implements OnInit {
   @ViewChild('info') signupForm?: NgForm;
   errorTrue: boolean = false;
   errorMessage: string = ''
+
+  isError = false;
+
+  isLoading = false;
+
+  color: ThemePalette = 'warn';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
 
   ngOnInit(): void {
       this._title.setTitle('Sign Up')
@@ -32,11 +42,13 @@ export class VendorSignupComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
+          this.isLoading = true;
           console.log(response);
           this.router.navigate(['vendor/login'])
         },
         error: (err) => {
           // alert(err.error.message)
+          this.isLoading = false;
           this.errorTrue = true;
           this.errorMessage = err.error.message;
         },

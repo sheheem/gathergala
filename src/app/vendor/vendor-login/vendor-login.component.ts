@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { JwtService } from 'src/app/jwt.service';
 import { VendorService } from '../vendor.service';
 import { Title } from '@angular/platform-browser';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-vendor-login',
@@ -17,6 +19,12 @@ export class VendorLoginComponent implements OnInit {
   errorTrue: boolean = false;
   errorMessage: string = '';
 
+  isLoading = false;
+
+  color: ThemePalette = 'warn';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
+
 ngOnInit(): void {
     this._title.setTitle('Login')
 }
@@ -26,10 +34,12 @@ ngOnInit(): void {
       .loginVendor(this.loginForm?.value.email, this.loginForm?.value.password)
       .subscribe({
         next: (response) => {
+          this.isLoading = true;
           this.jwtService.setToken(response.accessToken)
           this.router.navigate(['/vendor'])
         },
         error: (err) => {
+          this.isLoading = false;
           this.errorTrue = true;
           this.errorMessage = err.error.message;
         },

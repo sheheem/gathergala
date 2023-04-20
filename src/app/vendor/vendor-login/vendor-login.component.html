@@ -11,12 +11,13 @@
         <div class="xl:w-8/12">
           <div class="block bg-white shadow-2xl rounded-lg">
             <div class="lg:flex lg:flex-wrap g-0">
-              <div class="lg:w-6/12 px-4 md:px-0">
+              <div class="lg:w-6/12 px-4 py-4 md:px-0">
                 <div class="md:p-12 md:mx-6">
                   <div class="text-center"></div>
+                  <mat-spinner class="mx-auto" *ngIf="isLoading" [color]="color" [mode]="mode" [value]="value"></mat-spinner>
                   <form (ngSubmit)="onSubmit()" #info="ngForm">
                     <p class="mb-4 font-semibold text-xl">
-                      Please login to your account
+                      Please login to your Organizer Account
                     </p>
                     <span
                         class="text-red-500"
@@ -73,12 +74,14 @@
                       <a class="text-gray-500" href="#!">Forgot password?</a>
                     </div>
                     <div class="flex items-center justify-between pb-6">
-                      <p class="mb-0 mr-2">Don't have an account?</p>
+                      <p class="mb-0 mr-2">Don't have an account?
+                        <a routerLink="/vendor/signup" class="text-blue-400"> &nbsp; Create one</a>
+                      </p>
                     </div>
                   </form>
                 </div>
               </div>
-              <div class="lg:w-6/12 flex items-center justify-center">
+              <div class="hidden lg:w-6/12 lg:block xl:block flex items-center justify-center">
                 <img class="" src="../../../assets/logo.png" alt="logo" />
               </div>
             </div>
