@@ -56,7 +56,8 @@
           </div>
           <div class="flex justify-between mt-10 mb-5">
             <span class="font-semibold text-sm uppercase">Total Tickets: </span>
-            <span class="font-semibold text-sm">{{'x'+quantities}}</span>
+            <span *ngIf="this.quantities < 0 " class="font-semibold text-sm">NA</span>
+            <span *ngIf="this.quantities >= 0" class="font-semibold text-sm">{{'x'+quantities}}</span>
           </div>
           
           
@@ -64,10 +65,10 @@
           <div class="border-t mt-8">
             <div class="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span *ngIf="this.quantities==0">{{0 | currency: 'INR'}} </span>
-              <span *ngIf="this.quantities !== 0"> {{total() | currency: 'INR'}} </span>
+              <span *ngIf="this.quantities == 0">{{0 | currency: 'INR'}} </span>
+              <span *ngIf="this.quantities !== 0 && this.quantities > 0"> {{total() | currency: 'INR'}} </span>
             </div>
-            <button (click)="onSubmit()" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+            <button *ngIf="this.quantities > 0" (click)="onSubmit()" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
           </div>
         </div>
   

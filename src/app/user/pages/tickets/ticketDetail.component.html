@@ -13,7 +13,7 @@
     </div>
     
     <ng-template #inputTemplate>
-      <input class="mx-auto" type="number" [(ngModel)]="quantity" (change)="changeEvent()" min="0" max="{{ticket.ticketNumber}}">
+      <input class="mx-auto" type="number" [(ngModel)]="quantity" (change)="changeEvent()" required min="0" max="{{ticket.ticketNumber}}">
     </ng-template>
   </div>
   
