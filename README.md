@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
 
+## Description
+
 I have developed a comprehensive event booking application using Angular, NestJS, and MongoDB. The application enables users to browse and select various events of their interest and conveniently book tickets for those events. To facilitate secure and seamless transactions, I integrated the Stripe payment gateway.
 
 The user experience begins with a user-friendly interface where users can explore a wide range of events. Each event listing provides essential details such as the event date, location, and basic ticket price. To enhance the user experience, I integrated the Mapbox API, allowing users to view the event's precise location on a map.
