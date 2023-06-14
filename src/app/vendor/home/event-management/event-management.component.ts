@@ -52,6 +52,14 @@ deleteEvent(eventId) {
   this._vendorService.deleteEvent(eventId).subscribe({
     next: (response) => {
       console.log("Event deleted successfully");
+      this._vendorService.eventsHosted(this.vendorId).subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
     },
     error: (err) => {
       console.log(err);

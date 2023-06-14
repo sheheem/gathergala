@@ -30,3 +30,6 @@ import { AuthGuard } from './vendor/auth.guard';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+// function name(a,b, ...)
